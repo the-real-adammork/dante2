@@ -18,6 +18,7 @@
     "build": "babel-node tools/build-cli.js",
     "lint": "eslint app tools webpack *.js",
     "release": "release",
+    "install": "babel-node tools/build-cli.js"
     "postinstall": "babel-node tools/build-cli.js"
   },
   "peerDependencies": {
