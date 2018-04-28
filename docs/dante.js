@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 116:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -22,11 +22,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -34,41 +34,41 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _immutable = __webpack_require__(44);
+var _immutable = __webpack_require__(48);
 
 var _immutable2 = _interopRequireDefault(_immutable);
 
 var _draftJs = __webpack_require__(12);
 
-var _draftConvert = __webpack_require__(276);
+var _draftConvert = __webpack_require__(279);
 
 var _index = __webpack_require__(27);
 
-var _link = __webpack_require__(218);
+var _link = __webpack_require__(221);
 
 var _link2 = _interopRequireDefault(_link);
 
-var _debug = __webpack_require__(217);
+var _debug = __webpack_require__(220);
 
 var _debug2 = _interopRequireDefault(_debug);
 
-var _find_entities = __webpack_require__(224);
+var _find_entities = __webpack_require__(227);
 
 var _find_entities2 = _interopRequireDefault(_find_entities);
 
-var _save_content = __webpack_require__(226);
+var _save_content = __webpack_require__(229);
 
 var _save_content2 = _interopRequireDefault(_save_content);
 
-var _html2content = __webpack_require__(225);
+var _html2content = __webpack_require__(228);
 
 var _html2content2 = _interopRequireDefault(_html2content);
 
-var _draftJsCustomStyles = __webpack_require__(283);
+var _draftJsCustomStyles = __webpack_require__(286);
 
 var _draftJsCustomStyles2 = _interopRequireDefault(_draftJsCustomStyles);
 
@@ -665,7 +665,7 @@ var DanteEditor = function (_React$Component) {
         if (currentBlock.getText().length === 0) {
 
           if (config_block && config_block.handleEnterWithoutText) {
-            config_block.handleEnterWithText(this, currentBlock);
+            config_block.handleEnterWithoutText(this, currentBlock);
             this.closePopOvers();
             return true;
           }
@@ -1087,21 +1087,21 @@ exports['default'] = DanteEditor;
 
 /***/ }),
 
-/***/ 184:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/dante.eot";
 
 /***/ }),
 
-/***/ 185:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/fontello.eot";
 
 /***/ }),
 
-/***/ 188:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1112,7 +1112,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DanteEditor = exports.Dante = undefined;
 
-var _init = __webpack_require__(219);
+var _init = __webpack_require__(222);
 
 window.Dante = _init.Dante;
 window.DanteEditor = _init.DanteEditor;
@@ -1122,26 +1122,26 @@ exports.DanteEditor = _init.DanteEditor;
 
 /***/ }),
 
-/***/ 192:
+/***/ 195:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 211:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(192);
+__webpack_require__(195);
 
-var _index = __webpack_require__(188);
+var _index = __webpack_require__(191);
 
 /***/ }),
 
-/***/ 212:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1151,7 +1151,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1163,11 +1163,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1175,13 +1175,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _draftJs = __webpack_require__(12);
 
-var _axios = __webpack_require__(55);
+var _axios = __webpack_require__(59);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1339,7 +1339,7 @@ exports['default'] = EmbedBlock;
 
 /***/ }),
 
-/***/ 213:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1349,11 +1349,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assign = __webpack_require__(80);
+var _assign = __webpack_require__(82);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1365,11 +1365,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1377,13 +1377,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _draftJs = __webpack_require__(12);
 
-var _axios = __webpack_require__(55);
+var _axios = __webpack_require__(59);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1829,7 +1829,7 @@ var Loader = function (_React$Component2) {
 
 /***/ }),
 
-/***/ 214:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1839,11 +1839,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assign = __webpack_require__(80);
+var _assign = __webpack_require__(82);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1855,11 +1855,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1867,7 +1867,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1951,7 +1951,7 @@ exports['default'] = PlaceholderBlock;
 
 /***/ }),
 
-/***/ 215:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1961,11 +1961,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assign = __webpack_require__(80);
+var _assign = __webpack_require__(82);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1977,11 +1977,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1989,7 +1989,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1997,7 +1997,7 @@ var _draftJs = __webpack_require__(12);
 
 var _index = __webpack_require__(27);
 
-var _axios = __webpack_require__(55);
+var _axios = __webpack_require__(59);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -2102,7 +2102,7 @@ exports['default'] = VideoBlock;
 
 /***/ }),
 
-/***/ 216:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2124,45 +2124,45 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _immutable = __webpack_require__(44);
+var _immutable = __webpack_require__(48);
 
-var _editor = __webpack_require__(116);
+var _editor = __webpack_require__(118);
 
 var _editor2 = _interopRequireDefault(_editor);
 
-var _image = __webpack_require__(221);
+var _image = __webpack_require__(224);
 
 var _image2 = _interopRequireDefault(_image);
 
-var _link = __webpack_require__(222);
+var _link = __webpack_require__(225);
 
 var _link2 = _interopRequireDefault(_link);
 
-var _addButton = __webpack_require__(220);
+var _addButton = __webpack_require__(223);
 
 var _addButton2 = _interopRequireDefault(_addButton);
 
-var _toolTip = __webpack_require__(223);
+var _toolTip = __webpack_require__(226);
 
 var _toolTip2 = _interopRequireDefault(_toolTip);
 
-var _image3 = __webpack_require__(213);
+var _image3 = __webpack_require__(216);
 
 var _image4 = _interopRequireDefault(_image3);
 
-var _embed = __webpack_require__(212);
+var _embed = __webpack_require__(215);
 
 var _embed2 = _interopRequireDefault(_embed);
 
-var _video = __webpack_require__(215);
+var _video = __webpack_require__(218);
 
 var _video2 = _interopRequireDefault(_video);
 
-var _placeholder = __webpack_require__(214);
+var _placeholder = __webpack_require__(217);
 
 var _placeholder2 = _interopRequireDefault(_placeholder);
 
@@ -2426,7 +2426,7 @@ exports['default'] = Dante;
 
 /***/ }),
 
-/***/ 217:
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2436,11 +2436,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _stringify = __webpack_require__(79);
+var _stringify = __webpack_require__(81);
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -2452,11 +2452,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -2620,7 +2620,7 @@ exports["default"] = Debug;
 
 /***/ }),
 
-/***/ 218:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2630,7 +2630,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -2642,11 +2642,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -2737,7 +2737,7 @@ exports['default'] = Link;
 
 /***/ }),
 
-/***/ 219:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2748,11 +2748,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DanteEditor = exports.Dante = undefined;
 
-var _dante = __webpack_require__(216);
+var _dante = __webpack_require__(219);
 
 var _dante2 = _interopRequireDefault(_dante);
 
-var _editor = __webpack_require__(116);
+var _editor = __webpack_require__(118);
 
 var _editor2 = _interopRequireDefault(_editor);
 
@@ -2763,7 +2763,7 @@ exports.DanteEditor = _editor2['default'];
 
 /***/ }),
 
-/***/ 220:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2773,7 +2773,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -2785,11 +2785,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -2797,7 +2797,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -2805,7 +2805,7 @@ var _draftJs = __webpack_require__(12);
 
 var _index = __webpack_require__(27);
 
-var _selection = __webpack_require__(78);
+var _selection = __webpack_require__(80);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -3172,7 +3172,7 @@ exports['default'] = DanteInlineTooltip;
 
 /***/ }),
 
-/***/ 221:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3182,7 +3182,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -3194,11 +3194,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3206,13 +3206,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _draftJs = __webpack_require__(12);
 
-var _selection = __webpack_require__(78);
+var _selection = __webpack_require__(80);
 
 var _index = __webpack_require__(27);
 
@@ -3435,7 +3435,7 @@ exports['default'] = DanteImagePopover;
 
 /***/ }),
 
-/***/ 222:
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3445,7 +3445,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -3457,11 +3457,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3469,7 +3469,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -3599,7 +3599,7 @@ exports['default'] = DanteAnchorPopover;
 
 /***/ }),
 
-/***/ 223:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3609,7 +3609,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(18);
+var _getPrototypeOf = __webpack_require__(20);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -3621,11 +3621,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(20);
+var _possibleConstructorReturn2 = __webpack_require__(22);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(19);
+var _inherits2 = __webpack_require__(21);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3633,13 +3633,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _draftJs = __webpack_require__(12);
 
-var _selection = __webpack_require__(78);
+var _selection = __webpack_require__(80);
 
 var _index = __webpack_require__(27);
 
@@ -4110,7 +4110,7 @@ exports['default'] = DanteTooltip;
 
 /***/ }),
 
-/***/ 224:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4141,7 +4141,7 @@ exports['default'] = findEntities;
 
 /***/ }),
 
-/***/ 225:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4151,13 +4151,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _stringify = __webpack_require__(79);
+var _stringify = __webpack_require__(81);
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
 var _draftJs = __webpack_require__(12);
 
-var _immutable = __webpack_require__(44);
+var _immutable = __webpack_require__(48);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -4288,7 +4288,7 @@ exports['default'] = customHTML2Content;
 
 /***/ }),
 
-/***/ 226:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4298,7 +4298,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _stringify = __webpack_require__(79);
+var _stringify = __webpack_require__(81);
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -4310,11 +4310,11 @@ var _createClass2 = __webpack_require__(16);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _axios = __webpack_require__(55);
+var _axios = __webpack_require__(59);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _immutable = __webpack_require__(44);
+var _immutable = __webpack_require__(48);
 
 var _immutable2 = _interopRequireDefault(_immutable);
 
@@ -4488,7 +4488,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.addNewBlockAt = exports.updateTextOfBlock = exports.updateDataOfBlock = exports.resetBlockWithType = exports.addNewBlock = exports.getCurrentBlock = exports.getNode = exports.getDefaultBlockData = undefined;
 
-var _immutable = __webpack_require__(44);
+var _immutable = __webpack_require__(48);
 
 var _draftJs = __webpack_require__(12);
 
@@ -4679,49 +4679,49 @@ var addNewBlockAt = exports.addNewBlockAt = function addNewBlockAt(editorState, 
 
 /***/ }),
 
-/***/ 429:
+/***/ 433:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/dante.svg";
 
 /***/ }),
 
-/***/ 430:
+/***/ 434:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/dante.ttf";
 
 /***/ }),
 
-/***/ 431:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/dante.woff";
 
 /***/ }),
 
-/***/ 432:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/fontello.svg";
 
 /***/ }),
 
-/***/ 433:
+/***/ 437:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/fontello.ttf";
 
 /***/ }),
 
-/***/ 434:
+/***/ 438:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "fonts/fontello.woff";
 
 /***/ }),
 
-/***/ 78:
+/***/ 80:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4786,5 +4786,5 @@ var getSelectedBlockNode = exports.getSelectedBlockNode = function getSelectedBl
 
 /***/ })
 
-},[211]);
+},[214]);
 //# sourceMappingURL=dante.js.map

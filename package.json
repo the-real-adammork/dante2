@@ -17,7 +17,8 @@
     "start": "node_modules/.bin/webpack-dev-server  --hot --inline --config webpack.config-doc.js",
     "build": "babel-node tools/build-cli.js",
     "lint": "eslint app tools webpack *.js",
-    "release": "release"
+    "release": "release",
+    "postinstall": "babel-node tools/build-cli.js"
   },
   "peerDependencies": {
     "react": "~16.0.0",
