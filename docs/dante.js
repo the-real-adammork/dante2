@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -18,15 +18,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1151,7 +1151,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1159,15 +1159,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1353,7 +1353,7 @@ var _assign = __webpack_require__(82);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1361,15 +1361,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1843,7 +1843,7 @@ var _assign = __webpack_require__(82);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1851,15 +1851,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -1965,7 +1965,7 @@ var _assign = __webpack_require__(82);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -1973,15 +1973,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -2116,7 +2116,7 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
@@ -2440,7 +2440,7 @@ var _stringify = __webpack_require__(81);
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -2448,15 +2448,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -2630,7 +2630,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -2638,15 +2638,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -2773,7 +2773,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -2781,15 +2781,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3182,7 +3182,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -3190,15 +3190,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3445,7 +3445,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
+var _getPrototypeOf = __webpack_require__(24);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
@@ -3453,15 +3453,15 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3609,23 +3609,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__(20);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
 var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(22);
+var _possibleConstructorReturn2 = __webpack_require__(21);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(21);
+var _inherits2 = __webpack_require__(20);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -3651,7 +3643,7 @@ var DanteTooltip = function (_React$Component) {
   function DanteTooltip(props) {
     (0, _classCallCheck3['default'])(this, DanteTooltip);
 
-    var _this = (0, _possibleConstructorReturn3['default'])(this, (DanteTooltip.__proto__ || (0, _getPrototypeOf2['default'])(DanteTooltip)).call(this, props));
+    var _this = (0, _possibleConstructorReturn3['default'])(this, _React$Component.call(this, props));
 
     _this._clickInlineHandler = _this._clickInlineHandler.bind(_this);
     _this.display = _this.display.bind(_this);
@@ -3677,310 +3669,299 @@ var DanteTooltip = function (_React$Component) {
     return _this;
   }
 
-  (0, _createClass3['default'])(DanteTooltip, [{
-    key: '_clickInlineHandler',
-    value: function _clickInlineHandler(ev, style) {
-      var _this2 = this;
+  DanteTooltip.prototype._clickInlineHandler = function _clickInlineHandler(ev, style) {
+    var _this2 = this;
 
-      ev.preventDefault();
+    ev.preventDefault();
 
-      this.props.onChange(_draftJs.RichUtils.toggleInlineStyle(this.props.editorState, style));
+    this.props.onChange(_draftJs.RichUtils.toggleInlineStyle(this.props.editorState, style));
 
-      return setTimeout(function () {
-        return _this2.relocate();
-      }, 0);
-    }
-  }, {
-    key: 'display',
-    value: function display(b) {
-      if (b) {
-        return this.show();
-      } else {
-        return this.hide();
-      }
-    }
-  }, {
-    key: 'show',
-    value: function show() {
-      return this.setState({
-        show: true });
-    }
-  }, {
-    key: 'hide',
-    value: function hide() {
-      return this.setState({
-        link_mode: false,
-        show: false
-      });
-    }
-  }, {
-    key: 'setPosition',
-    value: function setPosition(coords) {
-      return this.setState({
-        position: coords });
-    }
-  }, {
-    key: 'isDescendant',
-    value: function isDescendant(parent, child) {
-      var node = child.parentNode;
-      while (node !== null) {
-        if (node === parent) {
-          return true;
-        }
-        node = node.parentNode;
-      }
-      return false;
-    }
-  }, {
-    key: 'relocate',
-    value: function relocate() {
+    return setTimeout(function () {
+      return _this2.relocate();
+    }, 0);
+  };
 
-      var currentBlock = (0, _index.getCurrentBlock)(this.props.editorState);
-      var blockType = currentBlock.getType();
-      // display tooltip only for unstyled
-
-      if (this.props.configTooltip.selectionElements.indexOf(blockType) < 0) {
-        this.hide();
-        return;
-      }
-
-      if (this.state.link_mode) {
-        return;
-      }
-      if (!this.state.show) {
-        return;
-      }
-
-      var el = this.refs.dante_menu;
-      var padd = el.offsetWidth / 2;
-
-      var nativeSelection = (0, _selection.getSelection)(window);
-      if (!nativeSelection.rangeCount) {
-        return;
-      }
-
-      var selectionBoundary = (0, _selection.getSelectionRect)(nativeSelection);
-
-      var parent = _reactDom2['default'].findDOMNode(this.props.editor);
-      var parentBoundary = parent.getBoundingClientRect();
-
-      // hide if selected node is not in editor
-      if (!this.isDescendant(parent, nativeSelection.anchorNode)) {
-        this.hide();
-        return;
-      }
-
-      var top = selectionBoundary.top - parentBoundary.top - -90 - 5;
-      var left = selectionBoundary.left + selectionBoundary.width / 2 - padd;
-
-      if (!top || !left) {
-        return;
-      }
-
-      // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
-      return this.setState({
-        show: true,
-        position: {
-          left: left,
-          top: top
-        }
-      });
-    }
-  }, {
-    key: '_clickBlockHandler',
-    value: function _clickBlockHandler(ev, style) {
-      var _this3 = this;
-
-      ev.preventDefault();
-
-      this.props.onChange(_draftJs.RichUtils.toggleBlockType(this.props.editorState, style));
-
-      return setTimeout(function () {
-        return _this3.relocate();
-      }, 0);
-    }
-  }, {
-    key: 'displayLinkMode',
-    value: function displayLinkMode() {
-      if (this.state.link_mode) {
-        return "dante-menu--linkmode";
-      } else {
-        return "";
-      }
-    }
-  }, {
-    key: 'displayActiveMenu',
-    value: function displayActiveMenu() {
-      if (this.state.show) {
-        return "dante-menu--active";
-      } else {
-        return "";
-      }
-    }
-  }, {
-    key: '_enableLinkMode',
-    value: function _enableLinkMode(ev) {
-      ev.preventDefault();
-      return this.setState({
-        link_mode: true });
-    }
-  }, {
-    key: '_disableLinkMode',
-    value: function _disableLinkMode(ev) {
-      ev.preventDefault();
-      return this.setState({
-        link_mode: false,
-        url: ""
-      });
-    }
-  }, {
-    key: 'hideMenu',
-    value: function hideMenu() {
+  DanteTooltip.prototype.display = function display(b) {
+    if (b) {
+      return this.show();
+    } else {
       return this.hide();
     }
-  }, {
-    key: 'handleInputEnter',
-    value: function handleInputEnter(e) {
-      if (e.which === 13) {
-        return this.confirmLink(e);
+  };
+
+  DanteTooltip.prototype.show = function show() {
+    return this.setState({
+      show: true });
+  };
+
+  DanteTooltip.prototype.hide = function hide() {
+    return this.setState({
+      link_mode: false,
+      show: false
+    });
+  };
+
+  DanteTooltip.prototype.setPosition = function setPosition(coords) {
+    return this.setState({
+      position: coords });
+  };
+
+  DanteTooltip.prototype.isDescendant = function isDescendant(parent, child) {
+    var node = child.parentNode;
+    while (node !== null) {
+      if (node === parent) {
+        return true;
       }
+      node = node.parentNode;
     }
-  }, {
-    key: 'confirmLink',
-    value: function confirmLink(e) {
-      e.preventDefault();
-      var editorState = this.props.editorState;
+    return false;
+  };
 
-      var urlValue = e.currentTarget.value;
-      var contentState = editorState.getCurrentContent();
-      var selection = editorState.getSelection();
+  DanteTooltip.prototype.relocate = function relocate() {
 
-      var opts = {
-        url: urlValue,
-        showPopLinkOver: this.props.showPopLinkOver,
-        hidePopLinkOver: this.props.hidePopLinkOver
-      };
+    var currentBlock = (0, _index.getCurrentBlock)(this.props.editorState);
+    var blockType = currentBlock.getType();
+    // display tooltip only for unstyled
 
-      var entityKey = _draftJs.Entity.create('LINK', 'MUTABLE', opts);
-      //contentState.createEntity('LINK', 'MUTABLE', opts)
+    if (this.props.configTooltip.selectionElements.indexOf(blockType) < 0) {
+      this.hide();
+      return;
+    }
 
-      if (selection.isCollapsed()) {
-        console.log("COLLAPSED SKIPPING LINK");
-        return;
+    if (this.state.link_mode) {
+      return;
+    }
+    if (!this.state.show) {
+      return;
+    }
+
+    var el = this.refs.dante_menu;
+    var padd = el.offsetWidth / 2;
+
+    var nativeSelection = (0, _selection.getSelection)(window);
+    if (!nativeSelection.rangeCount) {
+      return;
+    }
+
+    var selectionBoundary = (0, _selection.getSelectionRect)(nativeSelection);
+
+    var parent = _reactDom2['default'].findDOMNode(this.props.editor);
+    var parentBoundary = parent.getBoundingClientRect();
+
+    // hide if selected node is not in editor
+    if (!this.isDescendant(parent, nativeSelection.anchorNode)) {
+      this.hide();
+      return;
+    }
+
+    var top = selectionBoundary.top - parentBoundary.top - 55 - 5;
+    var left = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - this.refs.dante_menu.offsetWidth / 2;
+
+    // Bound 'left' position to be within textbox +/- a margin.
+    var xAxisMargin = 20;
+    left = Math.max(-1 * xAxisMargin, left);
+    left = Math.min(parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth, left);
+
+    if (!top || !left) {
+      return;
+    }
+
+    var tooltipTop = selectionBoundary.top - parentBoundary.top - 55 - 5 + this.refs.dante_menu.offsetHeight;
+    var tooltipLeft = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - this.refs.dante_tooltip_carret.offsetWidth / 4;
+
+    // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
+    return this.setState({
+      show: true,
+      position: {
+        left: left,
+        top: top
+      },
+      tooltipPosition: {
+        left: tooltipLeft,
+        top: tooltipTop
+      }
+    });
+  };
+
+  DanteTooltip.prototype._clickBlockHandler = function _clickBlockHandler(ev, style) {
+    var _this3 = this;
+
+    ev.preventDefault();
+
+    this.props.onChange(_draftJs.RichUtils.toggleBlockType(this.props.editorState, style));
+
+    return setTimeout(function () {
+      return _this3.relocate();
+    }, 0);
+  };
+
+  DanteTooltip.prototype.displayLinkMode = function displayLinkMode() {
+    if (this.state.link_mode) {
+      return "dante-menu--linkmode";
+    } else {
+      return "";
+    }
+  };
+
+  DanteTooltip.prototype.displayActiveMenu = function displayActiveMenu() {
+    if (this.state.show) {
+      return "dante-menu--active";
+    } else {
+      return "";
+    }
+  };
+
+  DanteTooltip.prototype._enableLinkMode = function _enableLinkMode(ev) {
+    ev.preventDefault();
+    return this.setState({
+      link_mode: true });
+  };
+
+  DanteTooltip.prototype._disableLinkMode = function _disableLinkMode(ev) {
+    ev.preventDefault();
+    return this.setState({
+      link_mode: false,
+      url: ""
+    });
+  };
+
+  DanteTooltip.prototype.hideMenu = function hideMenu() {
+    return this.hide();
+  };
+
+  DanteTooltip.prototype.handleInputEnter = function handleInputEnter(e) {
+    if (e.which === 13) {
+      return this.confirmLink(e);
+    }
+  };
+
+  DanteTooltip.prototype.confirmLink = function confirmLink(e) {
+    e.preventDefault();
+    var editorState = this.props.editorState;
+
+    var urlValue = e.currentTarget.value;
+    var contentState = editorState.getCurrentContent();
+    var selection = editorState.getSelection();
+
+    var opts = {
+      url: urlValue,
+      showPopLinkOver: this.props.showPopLinkOver,
+      hidePopLinkOver: this.props.hidePopLinkOver
+    };
+
+    var entityKey = _draftJs.Entity.create('LINK', 'MUTABLE', opts);
+    //contentState.createEntity('LINK', 'MUTABLE', opts)
+
+    if (selection.isCollapsed()) {
+      console.log("COLLAPSED SKIPPING LINK");
+      return;
+    }
+
+    this.props.onChange(_draftJs.RichUtils.toggleLink(editorState, selection, entityKey));
+
+    return this._disableLinkMode(e);
+  };
+
+  DanteTooltip.prototype.getPosition = function getPosition() {
+    var pos = this.state.position;
+    return pos;
+  };
+
+  DanteTooltip.prototype.getTooltipPosition = function getTooltipPosition() {
+    var pos = this.state.tooltipPosition;
+    return pos;
+  };
+
+  DanteTooltip.prototype.inlineItems = function inlineItems() {
+    return this.props.widget_options.block_types.filter(function (o) {
+      return o.type === "inline";
+    });
+  };
+
+  DanteTooltip.prototype.blockItems = function blockItems() {
+    return this.props.widget_options.block_types.filter(function (o) {
+      return o.type === "block";
+    });
+  };
+
+  DanteTooltip.prototype.getDefaultValue = function getDefaultValue() {
+    var _this4 = this;
+
+    if (this.refs.dante_menu_input) {
+      this.refs.dante_menu_input.value = "";
+    }
+
+    var currentBlock = (0, _index.getCurrentBlock)(this.props.editorState);
+    var blockType = currentBlock.getType();
+    var selection = this.props.editor.state.editorState.getSelection();
+    var contentState = this.props.editorState.getCurrentContent();
+    var selectedEntity = null;
+    var defaultUrl = null;
+    return currentBlock.findEntityRanges(function (character) {
+      var entityKey = character.getEntity();
+      selectedEntity = entityKey;
+      return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
+    }, function (start, end) {
+      var selStart = selection.getAnchorOffset();
+      var selEnd = selection.getFocusOffset();
+      if (selection.getIsBackward()) {
+        selStart = selection.getFocusOffset();
+        selEnd = selection.getAnchorOffset();
       }
 
-      this.props.onChange(_draftJs.RichUtils.toggleLink(editorState, selection, entityKey));
-
-      return this._disableLinkMode(e);
-    }
-  }, {
-    key: 'getPosition',
-    value: function getPosition() {
-      var pos = this.state.position;
-      return pos;
-    }
-  }, {
-    key: 'inlineItems',
-    value: function inlineItems() {
-      return this.props.widget_options.block_types.filter(function (o) {
-        return o.type === "inline";
-      });
-    }
-  }, {
-    key: 'blockItems',
-    value: function blockItems() {
-      return this.props.widget_options.block_types.filter(function (o) {
-        return o.type === "block";
-      });
-    }
-  }, {
-    key: 'getDefaultValue',
-    value: function getDefaultValue() {
-      var _this4 = this;
-
-      if (this.refs.dante_menu_input) {
-        this.refs.dante_menu_input.value = "";
+      if (start === selStart && end === selEnd) {
+        defaultUrl = contentState.getEntity(selectedEntity).getData().url;
+        return _this4.refs.dante_menu_input.value = defaultUrl;
       }
+    });
+  };
 
-      var currentBlock = (0, _index.getCurrentBlock)(this.props.editorState);
-      var blockType = currentBlock.getType();
-      var selection = this.props.editor.state.editorState.getSelection();
-      var contentState = this.props.editorState.getCurrentContent();
-      var selectedEntity = null;
-      var defaultUrl = null;
-      return currentBlock.findEntityRanges(function (character) {
-        var entityKey = character.getEntity();
-        selectedEntity = entityKey;
-        return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
-      }, function (start, end) {
-        var selStart = selection.getAnchorOffset();
-        var selEnd = selection.getFocusOffset();
-        if (selection.getIsBackward()) {
-          selStart = selection.getFocusOffset();
-          selEnd = selection.getAnchorOffset();
-        }
+  DanteTooltip.prototype.render = function render() {
+    var _this5 = this;
 
-        if (start === selStart && end === selEnd) {
-          defaultUrl = contentState.getEntity(selectedEntity).getData().url;
-          return _this4.refs.dante_menu_input.value = defaultUrl;
-        }
+    return _react2['default'].createElement('div', {
+      id: 'dante-menu-wrapper',
+      ref: 'dante_menu_wrapper',
+      className: 'dante-menu-wrapper ' + this.displayActiveMenu() + ' ' + this.displayLinkMode()
+    }, _react2['default'].createElement('div', {
+      id: 'dante-menu',
+      ref: 'dante_menu',
+      className: 'dante-menu ' + this.displayActiveMenu() + ' ' + this.displayLinkMode(),
+      style: this.getPosition()
+    }, _react2['default'].createElement('div', { className: 'dante-menu-linkinput' }, _react2['default'].createElement('input', {
+      className: 'dante-menu-input',
+      ref: 'dante_menu_input',
+      placeholder: this.props.widget_options.placeholder,
+      onKeyPress: this.handleInputEnter,
+      defaultValue: this.getDefaultValue()
+    }), _react2['default'].createElement('div', { className: 'dante-menu-button', onMouseDown: this._disableLinkMode })), _react2['default'].createElement('ul', { className: 'dante-menu-buttons' }, this.blockItems().map(function (item, i) {
+      return _react2['default'].createElement(DanteTooltipItem, {
+        key: i,
+        item: item,
+        handleClick: _this5._clickBlockHandler,
+        editorState: _this5.props.editorState,
+        type: 'block',
+        currentStyle: _this5.props.editorState.getCurrentInlineStyle
       });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this5 = this;
+    }), _react2['default'].createElement(DanteTooltipLink, {
+      editorState: this.props.editorState,
+      enableLinkMode: this._enableLinkMode
+    }), this.inlineItems().map(function (item, i) {
+      return _react2['default'].createElement(DanteTooltipItem, {
+        key: i,
+        item: item,
+        type: 'inline',
+        editorState: _this5.props.editorState,
+        handleClick: _this5._clickInlineHandler
+      });
+    }))), _react2['default'].createElement('div', {
+      id: 'dante-tooltip-carret',
+      ref: 'dante_tooltip_carret',
+      className: 'dante-tooltip-carret ' + this.displayActiveMenu() + ' ' + this.displayLinkMode(),
+      style: this.getTooltipPosition()
+    }, []));
+  };
 
-      return _react2['default'].createElement(
-        'div',
-        {
-          id: 'dante-menu',
-          ref: 'dante_menu',
-          className: 'dante-menu ' + this.displayActiveMenu() + ' ' + this.displayLinkMode(),
-          style: this.getPosition()
-        },
-        _react2['default'].createElement(
-          'div',
-          { className: 'dante-menu-linkinput' },
-          _react2['default'].createElement('input', {
-            className: 'dante-menu-input',
-            ref: 'dante_menu_input',
-            placeholder: this.props.widget_options.placeholder,
-            onKeyPress: this.handleInputEnter,
-            defaultValue: this.getDefaultValue()
-          }),
-          _react2['default'].createElement('div', { className: 'dante-menu-button', onMouseDown: this._disableLinkMode })
-        ),
-        _react2['default'].createElement(
-          'ul',
-          { className: 'dante-menu-buttons' },
-          this.blockItems().map(function (item, i) {
-            return _react2['default'].createElement(DanteTooltipItem, {
-              key: i,
-              item: item,
-              handleClick: _this5._clickBlockHandler,
-              editorState: _this5.props.editorState,
-              type: 'block',
-              currentStyle: _this5.props.editorState.getCurrentInlineStyle
-            });
-          }),
-          _react2['default'].createElement(DanteTooltipLink, {
-            editorState: this.props.editorState,
-            enableLinkMode: this._enableLinkMode
-          }),
-          this.inlineItems().map(function (item, i) {
-            return _react2['default'].createElement(DanteTooltipItem, {
-              key: i,
-              item: item,
-              type: 'inline',
-              editorState: _this5.props.editorState,
-              handleClick: _this5._clickInlineHandler
-            });
-          })
-        )
-      );
-    }
-  }]);
   return DanteTooltip;
 }(_react2['default'].Component);
 
@@ -3988,15 +3969,13 @@ var DanteTooltipItem = function (_React$Component2) {
   (0, _inherits3['default'])(DanteTooltipItem, _React$Component2);
 
   function DanteTooltipItem() {
-    var _ref;
-
     (0, _classCallCheck3['default'])(this, DanteTooltipItem);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    var _this6 = (0, _possibleConstructorReturn3['default'])(this, (_ref = DanteTooltipItem.__proto__ || (0, _getPrototypeOf2['default'])(DanteTooltipItem)).call.apply(_ref, [this].concat(args)));
+    var _this6 = (0, _possibleConstructorReturn3['default'])(this, _React$Component2.call.apply(_React$Component2, [this].concat(args)));
 
     _this6.handleClick = _this6.handleClick.bind(_this6);
     _this6.activeClass = _this6.activeClass.bind(_this6);
@@ -4007,59 +3986,48 @@ var DanteTooltipItem = function (_React$Component2) {
     return _this6;
   }
 
-  (0, _createClass3['default'])(DanteTooltipItem, [{
-    key: 'handleClick',
-    value: function handleClick(ev) {
-      return this.props.handleClick(ev, this.props.item.style);
+  DanteTooltipItem.prototype.handleClick = function handleClick(ev) {
+    return this.props.handleClick(ev, this.props.item.style);
+  };
+
+  DanteTooltipItem.prototype.activeClass = function activeClass() {
+    if (this.isActive()) {
+      return "active";
+    } else {
+      return "";
     }
-  }, {
-    key: 'activeClass',
-    value: function activeClass() {
-      if (this.isActive()) {
-        return "active";
-      } else {
-        return "";
-      }
+  };
+
+  DanteTooltipItem.prototype.isActive = function isActive() {
+    if (this.props.type === "block") {
+      return this.activeClassBlock();
+    } else {
+      return this.activeClassInline();
     }
-  }, {
-    key: 'isActive',
-    value: function isActive() {
-      if (this.props.type === "block") {
-        return this.activeClassBlock();
-      } else {
-        return this.activeClassInline();
-      }
+  };
+
+  DanteTooltipItem.prototype.activeClassInline = function activeClassInline() {
+    if (!this.props.editorState) {
+      return;
     }
-  }, {
-    key: 'activeClassInline',
-    value: function activeClassInline() {
-      if (!this.props.editorState) {
-        return;
-      }
-      //console.log @props.item
-      return this.props.editorState.getCurrentInlineStyle().has(this.props.item.style);
+    //console.log @props.item
+    return this.props.editorState.getCurrentInlineStyle().has(this.props.item.style);
+  };
+
+  DanteTooltipItem.prototype.activeClassBlock = function activeClassBlock() {
+    //console.log "EDITOR STATE", @props.editorState
+    if (!this.props.editorState) {
+      return;
     }
-  }, {
-    key: 'activeClassBlock',
-    value: function activeClassBlock() {
-      //console.log "EDITOR STATE", @props.editorState
-      if (!this.props.editorState) {
-        return;
-      }
-      var selection = this.props.editorState.getSelection();
-      var blockType = this.props.editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
-      return this.props.item.style === blockType;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'li',
-        { className: 'dante-menu-button ' + this.activeClass(), onMouseDown: this.handleClick },
-        _react2['default'].createElement('i', { className: 'dante-icon dante-icon-' + this.props.item.label, 'data-action': 'bold' })
-      );
-    }
-  }]);
+    var selection = this.props.editorState.getSelection();
+    var blockType = this.props.editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
+    return this.props.item.style === blockType;
+  };
+
+  DanteTooltipItem.prototype.render = function render() {
+    return _react2['default'].createElement('li', { className: 'dante-menu-button ' + this.activeClass(), onMouseDown: this.handleClick }, _react2['default'].createElement('i', { className: 'dante-icon dante-icon-' + this.props.item.label, 'data-action': 'bold' }));
+  };
+
   return DanteTooltipItem;
 }(_react2['default'].Component);
 
@@ -4067,42 +4035,29 @@ var DanteTooltipLink = function (_React$Component3) {
   (0, _inherits3['default'])(DanteTooltipLink, _React$Component3);
 
   function DanteTooltipLink() {
-    var _ref2;
-
     (0, _classCallCheck3['default'])(this, DanteTooltipLink);
 
     for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
     }
 
-    var _this7 = (0, _possibleConstructorReturn3['default'])(this, (_ref2 = DanteTooltipLink.__proto__ || (0, _getPrototypeOf2['default'])(DanteTooltipLink)).call.apply(_ref2, [this].concat(args)));
+    var _this7 = (0, _possibleConstructorReturn3['default'])(this, _React$Component3.call.apply(_React$Component3, [this].concat(args)));
 
     _this7.promptForLink = _this7.promptForLink.bind(_this7);
     return _this7;
   }
 
-  (0, _createClass3['default'])(DanteTooltipLink, [{
-    key: 'promptForLink',
-    value: function promptForLink(ev) {
-      var selection = this.props.editorState.getSelection();
-      if (!selection.isCollapsed()) {
-        return this.props.enableLinkMode(ev);
-      }
+  DanteTooltipLink.prototype.promptForLink = function promptForLink(ev) {
+    var selection = this.props.editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      return this.props.enableLinkMode(ev);
     }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2['default'].createElement(
-        'li',
-        { className: 'dante-menu-button', onMouseDown: this.promptForLink },
-        _react2['default'].createElement(
-          'i',
-          { className: 'dante-icon icon-createlink', 'data-action': 'createlink' },
-          'link'
-        )
-      );
-    }
-  }]);
+  };
+
+  DanteTooltipLink.prototype.render = function render() {
+    return _react2['default'].createElement('li', { className: 'dante-menu-button', onMouseDown: this.promptForLink }, _react2['default'].createElement('i', { className: 'dante-icon icon-createlink', 'data-action': 'createlink' }, 'link'));
+  };
+
   return DanteTooltipLink;
 }(_react2['default'].Component);
 
@@ -4306,7 +4261,7 @@ var _classCallCheck2 = __webpack_require__(15);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(16);
+var _createClass2 = __webpack_require__(18);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
