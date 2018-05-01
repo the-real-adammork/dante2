@@ -755,8 +755,6 @@ var DanteEditor = (function(_React$Component) {
       currentBlock.getText() + chars
     ];
 
-    console.log("BLOCK TO SHOW: " + blockTo);
-
     if (!blockTo) {
       return false;
     }
