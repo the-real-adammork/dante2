@@ -87,21 +87,15 @@ class DanteAnchorPopover extends React.Component {
     // Bound 'left' position to be within textbox +/- a margin.
     const xAxisMargin = 20;
     left = Math.max(-1 * xAxisMargin, left);
-    left = Math.min(
-      parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth,
-      left,
-    );
+    left = Math.min(parentBoundary.width + xAxisMargin - el.offsetWidth, left);
 
     if (!top || !left) {
       return;
     }
 
-    var tooltipTop = selectionBoundary.top - parentBoundary.top + 5;
-    var tooltipLeft =
-      selectionBoundary.left +
-      selectionBoundary.width / 2 -
-      parentBoundary.left -
-      padd;
+    let carretSize = 8;
+    var tooltipTop = carretSize / 2 * -1;
+    var tooltipLeft = padd - carretSize / 2;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
     return this.setState({
@@ -123,6 +117,11 @@ class DanteAnchorPopover extends React.Component {
       top: position.top,
       visibility: `${this.state.show ? 'visible' : 'hidden'}`,
     };
+    let carretStyle = {
+      position: absolute,
+      top: this.state.tooltipPosition.top + 'px',
+      left: this.state.tooltipPosition.left + 'px',
+    };
     return (
       <div
         ref="dante_popover"
@@ -135,7 +134,7 @@ class DanteAnchorPopover extends React.Component {
             {this.state.url}
           </a>
         </div>
-        <div className="popover-arrow" />
+        <div style={carretStyle} className="popover-arrow" />
       </div>
     );
   }

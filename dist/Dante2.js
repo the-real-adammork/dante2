@@ -40821,14 +40821,15 @@ var DanteAnchorPopover = function (_React$Component) {
     // Bound 'left' position to be within textbox +/- a margin.
     var xAxisMargin = 20;
     left = Math.max(-1 * xAxisMargin, left);
-    left = Math.min(parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth, left);
+    left = Math.min(parentBoundary.width + xAxisMargin - el.offsetWidth, left);
 
     if (!top || !left) {
       return;
     }
 
-    var tooltipTop = selectionBoundary.top - parentBoundary.top + 5;
-    var tooltipLeft = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - padd;
+    var carretSize = 8;
+    var tooltipTop = carretSize / 2 * -1;
+    var tooltipLeft = padd - carretSize / 2;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
     return this.setState({
@@ -40851,28 +40852,29 @@ var DanteAnchorPopover = function (_React$Component) {
       top: position.top,
       visibility: '' + (this.state.show ? 'visible' : 'hidden')
     };
+    var carretStyle = {
+      position: absolute,
+      top: this.state.tooltipPosition.top + 'px',
+      left: this.state.tooltipPosition.left + 'px'
+    };
     return _react2['default'].createElement(
       'div',
-      null,
+      {
+        ref: 'dante_popover',
+        className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
+        style: style,
+        onMouseOver: this.props.handleOnMouseOver,
+        onMouseOut: this.props.handleOnMouseOut },
       _react2['default'].createElement(
         'div',
-        {
-          ref: 'dante_popover',
-          className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
-          style: style,
-          onMouseOver: this.props.handleOnMouseOver,
-          onMouseOut: this.props.handleOnMouseOut },
+        { className: 'popover-inner' },
         _react2['default'].createElement(
-          'div',
-          { className: 'popover-inner' },
-          _react2['default'].createElement(
-            'a',
-            { href: this.props.url, target: '_blank' },
-            this.state.url
-          )
+          'a',
+          { href: this.props.url, target: '_blank' },
+          this.state.url
         )
       ),
-      _react2['default'].createElement('div', { className: 'popover-arrow' })
+      _react2['default'].createElement('div', { style: carretStyle, className: 'popover-arrow' })
     );
   };
 
