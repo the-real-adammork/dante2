@@ -93,9 +93,16 @@ class DanteAnchorPopover extends React.Component {
       return;
     }
 
-    let carretSize = 8;
-    var tooltipTop = carretSize / 2 * -1;
-    var tooltipLeft = padd - carretSize / 2;
+    var carretSize = 6;
+
+    var tooltipTop =
+      selectionBoundary.top - parentBoundary.top + 10 - carretSize;
+    var tooltipLeft =
+      selectionBoundary.left +
+      selectionBoundary.width / 2 -
+      parentBoundary.left -
+      padd -
+      carretSize;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
     return this.setState({
@@ -118,21 +125,24 @@ class DanteAnchorPopover extends React.Component {
       visibility: `${this.state.show ? 'visible' : 'hidden'}`,
     };
     let carretStyle = {
-      position: absolute,
+      position: 'absolute',
       top: this.state.tooltipPosition.top + 'px',
       left: this.state.tooltipPosition.left + 'px',
+      visibility: `${this.state.show ? 'visible' : 'hidden'}`,
     };
     return (
-      <div
-        ref="dante_popover"
-        className="dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active"
-        style={style}
-        onMouseOver={this.props.handleOnMouseOver}
-        onMouseOut={this.props.handleOnMouseOut}>
-        <div className="popover-inner">
-          <a href={this.props.url} target="_blank">
-            {this.state.url}
-          </a>
+      <div>
+        <div
+          ref="dante_popover"
+          className="dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active"
+          style={style}
+          onMouseOver={this.props.handleOnMouseOver}
+          onMouseOut={this.props.handleOnMouseOut}>
+          <div className="popover-inner">
+            <a href={this.props.url} target="_blank">
+              {this.state.url}
+            </a>
+          </div>
         </div>
         <div style={carretStyle} className="popover-arrow" />
       </div>

@@ -99,9 +99,10 @@ var DanteAnchorPopover = function (_React$Component) {
       return;
     }
 
-    var carretSize = 8;
-    var tooltipTop = carretSize / 2 * -1;
-    var tooltipLeft = padd - carretSize / 2;
+    var carretSize = 6;
+
+    var tooltipTop = selectionBoundary.top - parentBoundary.top + 10 - carretSize;
+    var tooltipLeft = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - padd - carretSize;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
     return this.setState({
@@ -125,25 +126,30 @@ var DanteAnchorPopover = function (_React$Component) {
       visibility: '' + (this.state.show ? 'visible' : 'hidden')
     };
     var carretStyle = {
-      position: absolute,
+      position: 'absolute',
       top: this.state.tooltipPosition.top + 'px',
-      left: this.state.tooltipPosition.left + 'px'
+      left: this.state.tooltipPosition.left + 'px',
+      visibility: '' + (this.state.show ? 'visible' : 'hidden')
     };
     return React.createElement(
       'div',
-      {
-        ref: 'dante_popover',
-        className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
-        style: style,
-        onMouseOver: this.props.handleOnMouseOver,
-        onMouseOut: this.props.handleOnMouseOut },
+      null,
       React.createElement(
         'div',
-        { className: 'popover-inner' },
+        {
+          ref: 'dante_popover',
+          className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
+          style: style,
+          onMouseOver: this.props.handleOnMouseOver,
+          onMouseOut: this.props.handleOnMouseOut },
         React.createElement(
-          'a',
-          { href: this.props.url, target: '_blank' },
-          this.state.url
+          'div',
+          { className: 'popover-inner' },
+          React.createElement(
+            'a',
+            { href: this.props.url, target: '_blank' },
+            this.state.url
+          )
         )
       ),
       React.createElement('div', { style: carretStyle, className: 'popover-arrow' })
