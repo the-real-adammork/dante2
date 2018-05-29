@@ -94,14 +94,20 @@ class DanteAnchorPopover extends React.Component {
     }
 
     var carretSize = 6;
+    var padding = 20;
 
     var tooltipTop =
-      selectionBoundary.top - parentBoundary.top + 10 - carretSize;
+      selectionBoundary.top -
+      parentBoundary.top +
+      10 +
+      padding -
+      carretSize -
+      1;
     var tooltipLeft =
-      selectionBoundary.left +
-      selectionBoundary.width / 2 -
-      parentBoundary.left -
+      selectionBoundary.left -
+      parentBoundary.left +
       padd -
+      padding -
       carretSize;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
@@ -125,6 +131,7 @@ class DanteAnchorPopover extends React.Component {
       visibility: `${this.state.show ? 'visible' : 'hidden'}`,
     };
     let carretStyle = {
+      transform: 'rotate(45deg)',
       position: 'absolute',
       top: this.state.tooltipPosition.top + 'px',
       left: this.state.tooltipPosition.left + 'px',
