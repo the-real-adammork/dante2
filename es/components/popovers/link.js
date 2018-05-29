@@ -153,7 +153,7 @@ var DanteAnchorPopover = function (_React$Component) {
           { className: 'popover-inner' },
           React.createElement(
             'a',
-            { href: this.props.url, target: '_blank' },
+            { href: this.state.url, target: '_blank' },
             this.state.url
           )
         )

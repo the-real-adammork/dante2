@@ -145,7 +145,7 @@ class DanteAnchorPopover extends React.Component {
           onMouseOver={this.props.handleOnMouseOver}
           onMouseOut={this.props.handleOnMouseOut}>
           <div className="popover-inner">
-            <a href={this.props.url} target="_blank">
+            <a href={this.state.url} target="_blank">
               {this.state.url}
             </a>
           </div>
