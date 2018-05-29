@@ -102,7 +102,7 @@ var DanteAnchorPopover = function (_React$Component) {
     var carretSize = 6;
     var padding = 15;
 
-    var tooltipTop = selectionBoundary.top - parentBoundary.top + 10 + padding - carretSize - 5;
+    var tooltipTop = selectionBoundary.top - parentBoundary.top + 10 + padding - carretSize - 1;
     var tooltipLeft = selectionBoundary.left - parentBoundary.left + selectionBoundary.width / 2 - padding - carretSize / 2;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"

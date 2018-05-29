@@ -102,7 +102,7 @@ class DanteAnchorPopover extends React.Component {
       10 +
       padding -
       carretSize -
-      5;
+      1;
     var tooltipLeft =
       selectionBoundary.left -
       parentBoundary.left +
