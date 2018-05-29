@@ -4,19 +4,34 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { convertToRaw, CompositeDecorator, getVisibleSelectionRect, getDefaultKeyBinding, getSelectionOffsetKeyForNode, KeyBindingUtil, ContentState, Editor, EditorState, Entity, RichUtils } from 'draft-js';
+import {
+  convertToRaw,
+  CompositeDecorator,
+  getVisibleSelectionRect,
+  getDefaultKeyBinding,
+  getSelectionOffsetKeyForNode,
+  KeyBindingUtil,
+  ContentState,
+  Editor,
+  EditorState,
+  Entity,
+  RichUtils,
+} from 'draft-js';
 
-import { getSelectionRect, getSelection } from "../../utils/selection.js";
+import {getSelectionRect, getSelection} from '../../utils/selection.js';
 
-import { getCurrentBlock } from '../../model/index.js';
+import {getCurrentBlock} from '../../model/index.js';
 
-var DanteTooltip = function (_React$Component) {
+var DanteTooltip = (function(_React$Component) {
   _inherits(DanteTooltip, _React$Component);
 
   function DanteTooltip(props) {
     _classCallCheck(this, DanteTooltip);
 
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+    var _this = _possibleConstructorReturn(
+      this,
+      _React$Component.call(this, props),
+    );
 
     _this._clickInlineHandler = _this._clickInlineHandler.bind(_this);
     _this.display = _this.display.bind(_this);
@@ -37,19 +52,24 @@ var DanteTooltip = function (_React$Component) {
     _this.state = {
       link_mode: false,
       show: false,
-      position: {}
+      position: {},
     };
     return _this;
   }
 
-  DanteTooltip.prototype._clickInlineHandler = function _clickInlineHandler(ev, style) {
+  DanteTooltip.prototype._clickInlineHandler = function _clickInlineHandler(
+    ev,
+    style,
+  ) {
     var _this2 = this;
 
     ev.preventDefault();
 
-    this.props.onChange(RichUtils.toggleInlineStyle(this.props.editorState, style));
+    this.props.onChange(
+      RichUtils.toggleInlineStyle(this.props.editorState, style),
+    );
 
-    return setTimeout(function () {
+    return setTimeout(function() {
       return _this2.relocate();
     }, 0);
   };
@@ -64,19 +84,21 @@ var DanteTooltip = function (_React$Component) {
 
   DanteTooltip.prototype.show = function show() {
     return this.setState({
-      show: true });
+      show: true,
+    });
   };
 
   DanteTooltip.prototype.hide = function hide() {
     return this.setState({
       link_mode: false,
-      show: false
+      show: false,
     });
   };
 
   DanteTooltip.prototype.setPosition = function setPosition(coords) {
     return this.setState({
-      position: coords });
+      position: coords,
+    });
   };
 
   DanteTooltip.prototype.isDescendant = function isDescendant(parent, child) {
@@ -91,7 +113,6 @@ var DanteTooltip = function (_React$Component) {
   };
 
   DanteTooltip.prototype.relocate = function relocate() {
-
     var currentBlock = getCurrentBlock(this.props.editorState);
     var blockType = currentBlock.getType();
     // display tooltip only for unstyled
@@ -128,73 +149,100 @@ var DanteTooltip = function (_React$Component) {
     }
 
     var top = selectionBoundary.top - parentBoundary.top - 55 - 5;
-    var left = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - this.refs.dante_menu.offsetWidth/2;
+    var left =
+      selectionBoundary.left +
+      selectionBoundary.width / 2 -
+      parentBoundary.left -
+      this.refs.dante_menu.offsetWidth / 2;
 
     // Bound 'left' position to be within textbox +/- a margin.
     const xAxisMargin = 20;
     left = Math.max(-1 * xAxisMargin, left);
-    left = Math.min( parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth, left);
+    left = Math.min(
+      parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth,
+      left,
+    );
 
     if (!top || !left) {
       return;
     }
 
-    var tooltipTop = selectionBoundary.top - parentBoundary.top - 55 - 5 + this.refs.dante_menu.offsetHeight;
-    var tooltipLeft = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - this.refs.dante_tooltip_carret.offsetWidth/4;
+    var tooltipTop =
+      selectionBoundary.top -
+      parentBoundary.top -
+      55 -
+      5 +
+      this.refs.dante_menu.offsetHeight;
+    var tooltipLeft =
+      selectionBoundary.left +
+      selectionBoundary.width / 2 -
+      parentBoundary.left -
+      this.refs.dante_tooltip_carret.offsetWidth / 4;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
-    return this.setState({
+    this.setState({
       show: true,
       position: {
         left: left,
-        top: top
+        top: top,
       },
       tooltipPosition: {
         left: tooltipLeft,
-        top: tooltipTop
-      }
+        top: tooltipTop,
+      },
     });
+
+    return {
+      left: left,
+      top: top,
+    };
   };
 
-  DanteTooltip.prototype._clickBlockHandler = function _clickBlockHandler(ev, style) {
+  DanteTooltip.prototype._clickBlockHandler = function _clickBlockHandler(
+    ev,
+    style,
+  ) {
     var _this3 = this;
 
     ev.preventDefault();
 
-    this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, style));
+    this.props.onChange(
+      RichUtils.toggleBlockType(this.props.editorState, style),
+    );
 
-    return setTimeout(function () {
+    return setTimeout(function() {
       return _this3.relocate();
     }, 0);
   };
 
   DanteTooltip.prototype.displayLinkMode = function displayLinkMode() {
     if (this.state.link_mode) {
-      return "dante-menu--linkmode";
+      return 'dante-menu--linkmode';
     } else {
-      return "";
+      return '';
     }
   };
 
   DanteTooltip.prototype.displayActiveMenu = function displayActiveMenu() {
     if (this.state.show) {
-      return "dante-menu--active";
+      return 'dante-menu--active';
     } else {
-      return "";
+      return '';
     }
   };
 
   DanteTooltip.prototype._enableLinkMode = function _enableLinkMode(ev) {
     ev.preventDefault();
     return this.setState({
-      link_mode: true });
+      link_mode: true,
+    });
   };
 
   DanteTooltip.prototype._disableLinkMode = function _disableLinkMode(ev) {
     ev.preventDefault();
     return this.setState({
       link_mode: false,
-      url: ""
+      url: '',
     });
   };
 
@@ -219,18 +267,20 @@ var DanteTooltip = function (_React$Component) {
     var opts = {
       url: urlValue,
       showPopLinkOver: this.props.showPopLinkOver,
-      hidePopLinkOver: this.props.hidePopLinkOver
+      hidePopLinkOver: this.props.hidePopLinkOver,
     };
 
     var entityKey = Entity.create('LINK', 'MUTABLE', opts);
     //contentState.createEntity('LINK', 'MUTABLE', opts)
 
     if (selection.isCollapsed()) {
-      console.log("COLLAPSED SKIPPING LINK");
+      console.log('COLLAPSED SKIPPING LINK');
       return;
     }
 
-    this.props.onChange(RichUtils.toggleLink(editorState, selection, entityKey));
+    this.props.onChange(
+      RichUtils.toggleLink(editorState, selection, entityKey),
+    );
 
     return this._disableLinkMode(e);
   };
@@ -246,14 +296,14 @@ var DanteTooltip = function (_React$Component) {
   };
 
   DanteTooltip.prototype.inlineItems = function inlineItems() {
-    return this.props.widget_options.block_types.filter(function (o) {
-      return o.type === "inline";
+    return this.props.widget_options.block_types.filter(function(o) {
+      return o.type === 'inline';
     });
   };
 
   DanteTooltip.prototype.blockItems = function blockItems() {
-    return this.props.widget_options.block_types.filter(function (o) {
-      return o.type === "block";
+    return this.props.widget_options.block_types.filter(function(o) {
+      return o.type === 'block';
     });
   };
 
@@ -261,7 +311,7 @@ var DanteTooltip = function (_React$Component) {
     var _this4 = this;
 
     if (this.refs.dante_menu_input) {
-      this.refs.dante_menu_input.value = "";
+      this.refs.dante_menu_input.value = '';
     }
 
     var currentBlock = getCurrentBlock(this.props.editorState);
@@ -270,23 +320,29 @@ var DanteTooltip = function (_React$Component) {
     var contentState = this.props.editorState.getCurrentContent();
     var selectedEntity = null;
     var defaultUrl = null;
-    return currentBlock.findEntityRanges(function (character) {
-      var entityKey = character.getEntity();
-      selectedEntity = entityKey;
-      return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
-    }, function (start, end) {
-      var selStart = selection.getAnchorOffset();
-      var selEnd = selection.getFocusOffset();
-      if (selection.getIsBackward()) {
-        selStart = selection.getFocusOffset();
-        selEnd = selection.getAnchorOffset();
-      }
+    return currentBlock.findEntityRanges(
+      function(character) {
+        var entityKey = character.getEntity();
+        selectedEntity = entityKey;
+        return (
+          entityKey !== null &&
+          contentState.getEntity(entityKey).getType() === 'LINK'
+        );
+      },
+      function(start, end) {
+        var selStart = selection.getAnchorOffset();
+        var selEnd = selection.getFocusOffset();
+        if (selection.getIsBackward()) {
+          selStart = selection.getFocusOffset();
+          selEnd = selection.getAnchorOffset();
+        }
 
-      if (start === selStart && end === selEnd) {
-        defaultUrl = contentState.getEntity(selectedEntity).getData().url;
-        return _this4.refs.dante_menu_input.value = defaultUrl;
-      }
-    });
+        if (start === selStart && end === selEnd) {
+          defaultUrl = contentState.getEntity(selectedEntity).getData().url;
+          return (_this4.refs.dante_menu_input.value = defaultUrl);
+        }
+      },
+    );
   };
 
   DanteTooltip.prototype.render = function render() {
@@ -297,83 +353,105 @@ var DanteTooltip = function (_React$Component) {
       {
         id: 'dante-menu-wrapper',
         ref: 'dante_menu_wrapper',
-        className: 'dante-menu-wrapper ' + this.displayActiveMenu() + ' ' + this.displayLinkMode(),
+        className:
+          'dante-menu-wrapper ' +
+          this.displayActiveMenu() +
+          ' ' +
+          this.displayLinkMode(),
       },
       React.createElement(
         'div',
         {
           id: 'dante-menu',
           ref: 'dante_menu',
-          className: 'dante-menu ' + this.displayActiveMenu() + ' ' + this.displayLinkMode(),
-          style: this.getPosition()
+          className:
+            'dante-menu ' +
+            this.displayActiveMenu() +
+            ' ' +
+            this.displayLinkMode(),
+          style: this.getPosition(),
         },
         React.createElement(
           'div',
-          { className: 'dante-menu-linkinput' },
+          {className: 'dante-menu-linkinput'},
           React.createElement('input', {
             className: 'dante-menu-input',
             ref: 'dante_menu_input',
             placeholder: this.props.widget_options.placeholder,
             onKeyPress: this.handleInputEnter,
-            defaultValue: this.getDefaultValue()
+            defaultValue: this.getDefaultValue(),
           }),
-          React.createElement('div', { className: 'dante-menu-button', onMouseDown: this._disableLinkMode })
+          React.createElement('div', {
+            className: 'dante-menu-button',
+            onMouseDown: this._disableLinkMode,
+          }),
         ),
         React.createElement(
           'ul',
-          { className: 'dante-menu-buttons' },
-          this.blockItems().map(function (item, i) {
+          {className: 'dante-menu-buttons'},
+          this.blockItems().map(function(item, i) {
             return React.createElement(DanteTooltipItem, {
               key: i,
               item: item,
               handleClick: _this5._clickBlockHandler,
               editorState: _this5.props.editorState,
               type: 'block',
-              currentStyle: _this5.props.editorState.getCurrentInlineStyle
+              currentStyle: _this5.props.editorState.getCurrentInlineStyle,
             });
           }),
           React.createElement(DanteTooltipLink, {
             editorState: this.props.editorState,
-            enableLinkMode: this._enableLinkMode
+            enableLinkMode: this._enableLinkMode,
           }),
-          this.inlineItems().map(function (item, i) {
+          this.inlineItems().map(function(item, i) {
             return React.createElement(DanteTooltipItem, {
               key: i,
               item: item,
               type: 'inline',
               editorState: _this5.props.editorState,
-              handleClick: _this5._clickInlineHandler
+              handleClick: _this5._clickInlineHandler,
             });
-          })
-        )
+          }),
+        ),
       ),
       React.createElement(
         'div',
         {
           id: 'dante-tooltip-carret',
           ref: 'dante_tooltip_carret',
-          className: 'dante-tooltip-carret ' + this.displayActiveMenu() + ' ' + this.displayLinkMode(),
-          style: this.getTooltipPosition()
+          className:
+            'dante-tooltip-carret ' +
+            this.displayActiveMenu() +
+            ' ' +
+            this.displayLinkMode(),
+          style: this.getTooltipPosition(),
         },
-        []
-      )
+        [],
+      ),
     );
   };
 
   return DanteTooltip;
-}(React.Component);
+})(React.Component);
 
-var DanteTooltipItem = function (_React$Component2) {
+var DanteTooltipItem = (function(_React$Component2) {
   _inherits(DanteTooltipItem, _React$Component2);
 
   function DanteTooltipItem() {
     _classCallCheck(this, DanteTooltipItem);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    for (
+      var _len = arguments.length, args = Array(_len), _key = 0;
+      _key < _len;
+      _key++
+    ) {
       args[_key] = arguments[_key];
     }
 
-    var _this6 = _possibleConstructorReturn(this, _React$Component2.call.apply(_React$Component2, [this].concat(args)));
+    var _this6 = _possibleConstructorReturn(
+      this,
+      _React$Component2.call.apply(_React$Component2, [this].concat(args)),
+    );
 
     _this6.handleClick = _this6.handleClick.bind(_this6);
     _this6.activeClass = _this6.activeClass.bind(_this6);
@@ -390,14 +468,14 @@ var DanteTooltipItem = function (_React$Component2) {
 
   DanteTooltipItem.prototype.activeClass = function activeClass() {
     if (this.isActive()) {
-      return "active";
+      return 'active';
     } else {
-      return "";
+      return '';
     }
   };
 
   DanteTooltipItem.prototype.isActive = function isActive() {
-    if (this.props.type === "block") {
+    if (this.props.type === 'block') {
       return this.activeClassBlock();
     } else {
       return this.activeClassInline();
@@ -409,7 +487,9 @@ var DanteTooltipItem = function (_React$Component2) {
       return;
     }
     //console.log @props.item
-    return this.props.editorState.getCurrentInlineStyle().has(this.props.item.style);
+    return this.props.editorState
+      .getCurrentInlineStyle()
+      .has(this.props.item.style);
   };
 
   DanteTooltipItem.prototype.activeClassBlock = function activeClassBlock() {
@@ -418,32 +498,48 @@ var DanteTooltipItem = function (_React$Component2) {
       return;
     }
     var selection = this.props.editorState.getSelection();
-    var blockType = this.props.editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
+    var blockType = this.props.editorState
+      .getCurrentContent()
+      .getBlockForKey(selection.getStartKey())
+      .getType();
     return this.props.item.style === blockType;
   };
 
   DanteTooltipItem.prototype.render = function render() {
     return React.createElement(
       'li',
-      { className: 'dante-menu-button ' + this.activeClass(), onMouseDown: this.handleClick },
-      React.createElement('i', { className: 'dante-icon dante-icon-' + this.props.item.label, 'data-action': 'bold' })
+      {
+        className: 'dante-menu-button ' + this.activeClass(),
+        onMouseDown: this.handleClick,
+      },
+      React.createElement('i', {
+        className: 'dante-icon dante-icon-' + this.props.item.label,
+        'data-action': 'bold',
+      }),
     );
   };
 
   return DanteTooltipItem;
-}(React.Component);
+})(React.Component);
 
-var DanteTooltipLink = function (_React$Component3) {
+var DanteTooltipLink = (function(_React$Component3) {
   _inherits(DanteTooltipLink, _React$Component3);
 
   function DanteTooltipLink() {
     _classCallCheck(this, DanteTooltipLink);
 
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    for (
+      var _len2 = arguments.length, args = Array(_len2), _key2 = 0;
+      _key2 < _len2;
+      _key2++
+    ) {
       args[_key2] = arguments[_key2];
     }
 
-    var _this7 = _possibleConstructorReturn(this, _React$Component3.call.apply(_React$Component3, [this].concat(args)));
+    var _this7 = _possibleConstructorReturn(
+      this,
+      _React$Component3.call.apply(_React$Component3, [this].concat(args)),
+    );
 
     _this7.promptForLink = _this7.promptForLink.bind(_this7);
     return _this7;
@@ -459,16 +555,16 @@ var DanteTooltipLink = function (_React$Component3) {
   DanteTooltipLink.prototype.render = function render() {
     return React.createElement(
       'li',
-      { className: 'dante-menu-button', onMouseDown: this.promptForLink },
+      {className: 'dante-menu-button', onMouseDown: this.promptForLink},
       React.createElement(
         'i',
-        { className: 'dante-icon icon-createlink', 'data-action': 'createlink' },
-        'link'
-      )
+        {className: 'dante-icon icon-createlink', 'data-action': 'createlink'},
+        'link',
+      ),
     );
   };
 
   return DanteTooltipLink;
-}(React.Component);
+})(React.Component);
 
 export default DanteTooltip;

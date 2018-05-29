@@ -20,6 +20,10 @@ var DanteAnchorPopover = function (_React$Component) {
     _this.relocate = _this.relocate.bind(_this);
     _this.render = _this.render.bind(_this);
     _this.state = {
+      tooltipPosition: {
+        top: 0,
+        left: 0
+      },
       position: {
         top: 0,
         left: 0
@@ -51,9 +55,11 @@ var DanteAnchorPopover = function (_React$Component) {
   };
 
   DanteAnchorPopover.prototype.setPosition = function setPosition(coords) {
+    /*
     return this.setState({
-      position: coords
+      position: coords,
     });
+    */
   };
 
   DanteAnchorPopover.prototype.relocate = function relocate(node) {
@@ -81,10 +87,32 @@ var DanteAnchorPopover = function (_React$Component) {
     var parent = ReactDOM.findDOMNode(this.props.editor);
     var parentBoundary = parent.getBoundingClientRect();
 
-    return {
-      top: selectionBoundary.top - parentBoundary.top + 10,
-      left: selectionBoundary.left + selectionBoundary.width / 2 - padd - parentBoundary.left
-    };
+    var top = selectionBoundary.top - parentBoundary.top + 10;
+    var left = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - padd;
+
+    // Bound 'left' position to be within textbox +/- a margin.
+    var xAxisMargin = 20;
+    left = Math.max(-1 * xAxisMargin, left);
+    left = Math.min(parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth, left);
+
+    if (!top || !left) {
+      return;
+    }
+
+    var tooltipTop = selectionBoundary.top - parentBoundary.top + 5;
+    var tooltipLeft = selectionBoundary.left + selectionBoundary.width / 2 - parentBoundary.left - padd;
+
+    // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
+    return this.setState({
+      position: {
+        left: left,
+        top: top
+      },
+      tooltipPosition: {
+        left: tooltipLeft,
+        top: tooltipTop
+      }
+    });
   };
 
   DanteAnchorPopover.prototype.render = function render() {
@@ -97,19 +125,23 @@ var DanteAnchorPopover = function (_React$Component) {
     };
     return React.createElement(
       'div',
-      {
-        ref: 'dante_popover',
-        className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
-        style: style,
-        onMouseOver: this.props.handleOnMouseOver,
-        onMouseOut: this.props.handleOnMouseOut },
+      null,
       React.createElement(
         'div',
-        { className: 'popover-inner' },
+        {
+          ref: 'dante_popover',
+          className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
+          style: style,
+          onMouseOver: this.props.handleOnMouseOver,
+          onMouseOut: this.props.handleOnMouseOut },
         React.createElement(
-          'a',
-          { href: this.props.url, target: '_blank' },
-          this.state.url
+          'div',
+          { className: 'popover-inner' },
+          React.createElement(
+            'a',
+            { href: this.props.url, target: '_blank' },
+            this.state.url
+          )
         )
       ),
       React.createElement('div', { className: 'popover-arrow' })

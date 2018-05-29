@@ -12,6 +12,10 @@ class DanteAnchorPopover extends React.Component {
     this.relocate = this.relocate.bind(this);
     this.render = this.render.bind(this);
     this.state = {
+      tooltipPosition: {
+        top: 0,
+        left: 0,
+      },
       position: {
         top: 0,
         left: 0,
@@ -42,9 +46,11 @@ class DanteAnchorPopover extends React.Component {
   }
 
   setPosition(coords) {
+    /*
     return this.setState({
       position: coords,
     });
+    */
   }
 
   relocate(node) {
@@ -71,14 +77,43 @@ class DanteAnchorPopover extends React.Component {
     let parent = ReactDOM.findDOMNode(this.props.editor);
     let parentBoundary = parent.getBoundingClientRect();
 
-    return {
-      top: selectionBoundary.top - parentBoundary.top + 10,
-      left:
-        selectionBoundary.left +
-        selectionBoundary.width / 2 -
-        padd -
-        parentBoundary.left,
-    };
+    var top = selectionBoundary.top - parentBoundary.top + 10;
+    var left =
+      selectionBoundary.left +
+      selectionBoundary.width / 2 -
+      parentBoundary.left -
+      padd;
+
+    // Bound 'left' position to be within textbox +/- a margin.
+    const xAxisMargin = 20;
+    left = Math.max(-1 * xAxisMargin, left);
+    left = Math.min(
+      parentBoundary.width + xAxisMargin - this.refs.dante_menu.offsetWidth,
+      left,
+    );
+
+    if (!top || !left) {
+      return;
+    }
+
+    var tooltipTop = selectionBoundary.top - parentBoundary.top + 5;
+    var tooltipLeft =
+      selectionBoundary.left +
+      selectionBoundary.width / 2 -
+      parentBoundary.left -
+      padd;
+
+    // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
+    return this.setState({
+      position: {
+        left: left,
+        top: top,
+      },
+      tooltipPosition: {
+        left: tooltipLeft,
+        top: tooltipTop,
+      },
+    });
   }
 
   render() {
@@ -89,16 +124,18 @@ class DanteAnchorPopover extends React.Component {
       visibility: `${this.state.show ? 'visible' : 'hidden'}`,
     };
     return (
-      <div
-        ref="dante_popover"
-        className="dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active"
-        style={style}
-        onMouseOver={this.props.handleOnMouseOver}
-        onMouseOut={this.props.handleOnMouseOut}>
-        <div className="popover-inner">
-          <a href={this.props.url} target="_blank">
-            {this.state.url}
-          </a>
+      <div>
+        <div
+          ref="dante_popover"
+          className="dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active"
+          style={style}
+          onMouseOver={this.props.handleOnMouseOver}
+          onMouseOut={this.props.handleOnMouseOut}>
+          <div className="popover-inner">
+            <a href={this.props.url} target="_blank">
+              {this.state.url}
+            </a>
+          </div>
         </div>
         <div className="popover-arrow" />
       </div>
