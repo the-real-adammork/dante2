@@ -124,18 +124,16 @@ class DanteAnchorPopover extends React.Component {
       visibility: `${this.state.show ? 'visible' : 'hidden'}`,
     };
     return (
-      <div>
-        <div
-          ref="dante_popover"
-          className="dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active"
-          style={style}
-          onMouseOver={this.props.handleOnMouseOver}
-          onMouseOut={this.props.handleOnMouseOut}>
-          <div className="popover-inner">
-            <a href={this.props.url} target="_blank">
-              {this.state.url}
-            </a>
-          </div>
+      <div
+        ref="dante_popover"
+        className="dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active"
+        style={style}
+        onMouseOver={this.props.handleOnMouseOver}
+        onMouseOut={this.props.handleOnMouseOut}>
+        <div className="popover-inner">
+          <a href={this.props.url} target="_blank">
+            {this.state.url}
+          </a>
         </div>
         <div className="popover-arrow" />
       </div>
