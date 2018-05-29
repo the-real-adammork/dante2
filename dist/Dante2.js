@@ -40863,7 +40863,7 @@ var DanteAnchorPopover = function (_React$Component) {
       position: 'absolute',
       top: this.state.tooltipPosition.top + 'px',
       left: this.state.tooltipPosition.left + 'px',
-      visibility: '\'hidden\''
+      visibility: 'hidden'
     };
     return _react2['default'].createElement(
       'div',
