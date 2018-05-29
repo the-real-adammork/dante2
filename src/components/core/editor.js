@@ -1,248 +1,263 @@
-
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Immutable from 'immutable'
-import { Map, fromJS } from 'immutable'
-import { 
-  convertToRaw, 
-  convertFromRaw, 
-  CompositeDecorator, 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Immutable from 'immutable';
+import {Map, fromJS} from 'immutable';
+import {
+  convertToRaw,
+  convertFromRaw,
+  CompositeDecorator,
   getDefaultKeyBinding,
-  ContentState, 
-  Editor, 
-  EditorState, 
-  Entity, 
-  RichUtils, 
-  DefaultDraftBlockRenderMap, 
-  SelectionState, 
-  Modifier
-} from 'draft-js'
+  ContentState,
+  Editor,
+  EditorState,
+  Entity,
+  RichUtils,
+  DefaultDraftBlockRenderMap,
+  SelectionState,
+  Modifier,
+} from 'draft-js';
 
-import { 
+import {
   convertToHTML,
-  //, convertFromHTML 
-} from 'draft-convert'
+  //, convertFromHTML
+} from 'draft-convert';
 
-import { 
-  addNewBlock, 
-  resetBlockWithType, 
-  updateDataOfBlock, 
-  //updateTextOfBlock, 
-  getCurrentBlock, 
-  addNewBlockAt 
-} from '../../model/index.js'
+import {
+  addNewBlock,
+  resetBlockWithType,
+  updateDataOfBlock,
+  //updateTextOfBlock,
+  getCurrentBlock,
+  addNewBlockAt,
+} from '../../model/index.js';
 
-import Link from '../decorators/link'
-import Debug from './debug'
-import findEntities from '../../utils/find_entities'
-import SaveBehavior from '../../utils/save_content'
-import customHTML2Content from '../../utils/html2content'
+import Link from '../decorators/link';
+import Debug from './debug';
+import findEntities from '../../utils/find_entities';
+import SaveBehavior from '../../utils/save_content';
+import customHTML2Content from '../../utils/html2content';
 import createStyles from 'draft-js-custom-styles';
-
 
 class DanteEditor extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.initializeState = this.initializeState.bind(this)
-    this.refreshSelection = this.refreshSelection.bind(this)
-    this.forceRender = this.forceRender.bind(this)
-    this.onChange = this.onChange.bind(this)
-    this.dispatchChangesToSave = this.dispatchChangesToSave.bind(this)
-    this.setPreContent = this.setPreContent.bind(this)
-    this.focus = this.focus.bind(this)
-    this.getEditorState = this.getEditorState.bind(this)
-    this.emitSerializedOutput = this.emitSerializedOutput.bind(this)
-    this.decodeEditorContent = this.decodeEditorContent.bind(this)
-    this.getTextFromEditor = this.getTextFromEditor.bind(this)
-    this.getLocks = this.getLocks.bind(this)
-    this.addLock = this.addLock.bind(this)
-    this.removeLock = this.removeLock.bind(this)
-    this.renderableBlocks = this.renderableBlocks.bind(this)
-    this.defaultWrappers = this.defaultWrappers.bind(this)
-    this.blockRenderer = this.blockRenderer.bind(this)
-    this.handleBlockRenderer = this.handleBlockRenderer.bind(this)
-    this.blockStyleFn = this.blockStyleFn.bind(this)
-    this.getDataBlock = this.getDataBlock.bind(this)
-    this.styleForBlock = this.styleForBlock.bind(this)
-    this.handlePasteText = this.handlePasteText.bind(this)
-    this.handleTXTPaste = this.handleTXTPaste.bind(this)
-    this.handleHTMLPaste = this.handleHTMLPaste.bind(this)
-    this.handlePasteImage = this.handlePasteImage.bind(this)
-    this.handleDroppedFiles = this.handleDroppedFiles.bind(this)
-    this.handleUpArrow = this.handleUpArrow.bind(this)
-    this.handleDownArrow = this.handleDownArrow.bind(this)
-    this.handleReturn = this.handleReturn.bind(this)
-    this.handleBeforeInput = this.handleBeforeInput.bind(this)
-    this.handleKeyCommand = this.handleKeyCommand.bind(this)
-    this.findCommandKey = this.findCommandKey.bind(this)
-    this.KeyBindingFn = this.KeyBindingFn.bind(this)
-    this.updateBlockData = this.updateBlockData.bind(this)
-    this.setDirection = this.setDirection.bind(this)
-    this.toggleEditable = this.toggleEditable.bind(this)
-    this.disableEditable = this.disableEditable.bind(this)
-    this.enableEditable = this.enableEditable.bind(this)
-    this.closePopOvers = this.closePopOvers.bind(this)
-    this.relocateTooltips = this.relocateTooltips.bind(this)
-    this.tooltipsWithProp = this.tooltipsWithProp.bind(this)
-    this.tooltipHasSelectionElement = this.tooltipHasSelectionElement.bind(this)
-    this.handleShowPopLinkOver = this.handleShowPopLinkOver.bind(this)
-    this.handleHidePopLinkOver = this.handleHidePopLinkOver.bind(this)
-    this.showPopLinkOver = this.showPopLinkOver.bind(this)
-    this.hidePopLinkOver = this.hidePopLinkOver.bind(this)
-    this.render = this.render.bind(this)
+    this.initializeState = this.initializeState.bind(this);
+    this.refreshSelection = this.refreshSelection.bind(this);
+    this.forceRender = this.forceRender.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.dispatchChangesToSave = this.dispatchChangesToSave.bind(this);
+    this.setPreContent = this.setPreContent.bind(this);
+    this.focus = this.focus.bind(this);
+    this.getEditorState = this.getEditorState.bind(this);
+    this.emitSerializedOutput = this.emitSerializedOutput.bind(this);
+    this.decodeEditorContent = this.decodeEditorContent.bind(this);
+    this.getTextFromEditor = this.getTextFromEditor.bind(this);
+    this.getLocks = this.getLocks.bind(this);
+    this.addLock = this.addLock.bind(this);
+    this.removeLock = this.removeLock.bind(this);
+    this.renderableBlocks = this.renderableBlocks.bind(this);
+    this.defaultWrappers = this.defaultWrappers.bind(this);
+    this.blockRenderer = this.blockRenderer.bind(this);
+    this.handleBlockRenderer = this.handleBlockRenderer.bind(this);
+    this.blockStyleFn = this.blockStyleFn.bind(this);
+    this.getDataBlock = this.getDataBlock.bind(this);
+    this.styleForBlock = this.styleForBlock.bind(this);
+    this.handlePasteText = this.handlePasteText.bind(this);
+    this.handleTXTPaste = this.handleTXTPaste.bind(this);
+    this.handleHTMLPaste = this.handleHTMLPaste.bind(this);
+    this.handlePasteImage = this.handlePasteImage.bind(this);
+    this.handleDroppedFiles = this.handleDroppedFiles.bind(this);
+    this.handleUpArrow = this.handleUpArrow.bind(this);
+    this.handleDownArrow = this.handleDownArrow.bind(this);
+    this.handleReturn = this.handleReturn.bind(this);
+    this.handleBeforeInput = this.handleBeforeInput.bind(this);
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    this.findCommandKey = this.findCommandKey.bind(this);
+    this.KeyBindingFn = this.KeyBindingFn.bind(this);
+    this.updateBlockData = this.updateBlockData.bind(this);
+    this.setDirection = this.setDirection.bind(this);
+    this.toggleEditable = this.toggleEditable.bind(this);
+    this.disableEditable = this.disableEditable.bind(this);
+    this.enableEditable = this.enableEditable.bind(this);
+    this.closePopOvers = this.closePopOvers.bind(this);
+    this.relocateTooltips = this.relocateTooltips.bind(this);
+    this.tooltipsWithProp = this.tooltipsWithProp.bind(this);
+    this.tooltipHasSelectionElement = this.tooltipHasSelectionElement.bind(
+      this,
+    );
+    this.handleShowPopLinkOver = this.handleShowPopLinkOver.bind(this);
+    this.handleHidePopLinkOver = this.handleHidePopLinkOver.bind(this);
+    this.showPopLinkOver = this.showPopLinkOver.bind(this);
+    this.hidePopLinkOver = this.hidePopLinkOver.bind(this);
+    this.render = this.render.bind(this);
 
-    this.decorator = new CompositeDecorator([{
-      strategy: findEntities.bind(null, 'LINK', this),
-      component: Link
-    }])
+    this.decorator = new CompositeDecorator([
+      {
+        strategy: findEntities.bind(null, 'LINK', this),
+        component: Link,
+      },
+    ]);
 
     this.blockRenderMap = Map({
-      "image": {
-        element: 'figure'
+      image: {
+        element: 'figure',
       },
-      "video": {
-        element: 'figure'
+      video: {
+        element: 'figure',
       },
-      "embed": {
-        element: 'div'
+      embed: {
+        element: 'div',
       },
-      'unstyled': {
+      unstyled: {
         wrapper: null,
-        element: 'div'
+        element: 'div',
       },
-      'paragraph': {
+      paragraph: {
         wrapper: null,
-        element: 'div'
+        element: 'div',
       },
-      'placeholder': {
+      placeholder: {
         wrapper: null,
-        element: 'div'
-      }
+        element: 'div',
+      },
+    });
 
-    })
-
-    this.extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(this.blockRenderMap)
+    this.extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(
+      this.blockRenderMap,
+    );
 
     this.state = {
       editorState: EditorState.createEmpty(),
       read_only: this.props.config.read_only,
       blockRenderMap: this.extendedBlockRenderMap,
       locks: 0,
-      debug: this.props.config.debug
-    }
+      debug: this.props.config.debug,
+    };
 
-    this.widgets = this.props.config.widgets
-    this.tooltips = this.props.config.tooltips
+    this.widgets = this.props.config.widgets;
+    this.tooltips = this.props.config.tooltips;
 
-    this.key_commands = this.props.config.key_commands
+    this.key_commands = this.props.config.key_commands;
 
-    this.continuousBlocks = this.props.config.continuousBlocks
+    this.continuousBlocks = this.props.config.continuousBlocks;
 
-    this.block_types = this.props.config.block_types
+    this.block_types = this.props.config.block_types;
 
-    this.default_wrappers = this.props.config.default_wrappers
+    this.default_wrappers = this.props.config.default_wrappers;
 
-    this.character_convert_mapping = this.props.config.character_convert_mapping
+    this.character_convert_mapping = this.props.config.character_convert_mapping;
 
     this.save = new SaveBehavior({
       getLocks: this.getLocks,
       config: {
         xhr: this.props.config.xhr,
-        data_storage: this.props.config.data_storage
+        data_storage: this.props.config.data_storage,
       },
       editorState: this.state.editorState,
-      editorContent: this.emitSerializedOutput()
-    })
+      editorContent: this.emitSerializedOutput(),
+    });
 
-    const { styles, customStyleFn, exporter } = createStyles(['font-size', 'color', 'font-family']);  //, 'PREFIX', customStyleMap);
-    this.styles = styles
-    this.customStyleFn = customStyleFn
+    const {styles, customStyleFn, exporter} = createStyles([
+      'font-size',
+      'color',
+      'font-family',
+    ]); //, 'PREFIX', customStyleMap);
+    this.styles = styles;
+    this.customStyleFn = customStyleFn;
   }
 
-  componentDidMount(){
-    this.initializeState()
+  componentDidMount() {
+    this.initializeState();
   }
 
   initializeState() {
-    let newEditorState = EditorState.createEmpty(this.decorator)
+    let newEditorState = EditorState.createEmpty(this.decorator);
     if (this.props.content) {
-      newEditorState = EditorState.set(this.decodeEditorContent(this.props.content), {decorator: this.decorator});
+      newEditorState = EditorState.set(
+        this.decodeEditorContent(this.props.content),
+        {decorator: this.decorator},
+      );
     }
-    this.onChange(newEditorState)      
+    this.onChange(newEditorState);
   }
 
   decodeEditorContent(raw_as_json) {
-    const new_content = convertFromRaw(raw_as_json)
-    let editorState
-    return editorState = EditorState.createWithContent(new_content, this.decorator)
+    const new_content = convertFromRaw(raw_as_json);
+    let editorState;
+    return (editorState = EditorState.createWithContent(
+      new_content,
+      this.decorator,
+    ));
   }
 
   refreshSelection(newEditorState) {
-    const { editorState } = this.state
+    const {editorState} = this.state;
     // Setting cursor position after inserting to content
-    const s = this.state.editorState.getSelection()
-    const c = editorState.getCurrentContent()
-    const focusOffset = s.getFocusOffset()
-    const anchorKey = s.getAnchorKey()
+    const s = this.state.editorState.getSelection();
+    const c = editorState.getCurrentContent();
+    const focusOffset = s.getFocusOffset();
+    const anchorKey = s.getAnchorKey();
 
-    let selectionState = SelectionState.createEmpty(s.getAnchorKey())
+    let selectionState = SelectionState.createEmpty(s.getAnchorKey());
 
     // console.log anchorKey, focusOffset
     selectionState = selectionState.merge({
       anchorOffset: focusOffset,
       focusKey: anchorKey,
-      focusOffset
-    })
+      focusOffset,
+    });
 
-    let newState = EditorState.forceSelection(newEditorState, selectionState)
+    let newState = EditorState.forceSelection(newEditorState, selectionState);
 
-    return this.onChange(newState)
+    return this.onChange(newState);
   }
 
   forceRender(editorState) {
-    const selection = this.state.editorState.getSelection()
-    const content = editorState.getCurrentContent()
-    const newEditorState = EditorState.createWithContent(content, this.decorator)
+    const selection = this.state.editorState.getSelection();
+    const content = editorState.getCurrentContent();
+    const newEditorState = EditorState.createWithContent(
+      content,
+      this.decorator,
+    );
 
-    return this.refreshSelection(newEditorState)
+    return this.refreshSelection(newEditorState);
   }
 
   onChange(editorState) {
-    this.setPreContent()
-    this.setState({ editorState })
+    this.setPreContent();
+    this.setState({editorState});
 
-    const currentBlock = getCurrentBlock(this.state.editorState)
-    const blockType = currentBlock.getType()
+    const currentBlock = getCurrentBlock(this.state.editorState);
+    const blockType = currentBlock.getType();
 
     if (!editorState.getSelection().isCollapsed()) {
-
-      const tooltip = this.tooltipsWithProp('displayOnSelection')[0]
+      const tooltip = this.tooltipsWithProp('displayOnSelection')[0];
       if (!this.tooltipHasSelectionElement(tooltip, blockType)) {
-        return
+        return;
       }
-      this.handleTooltipDisplayOn('displayOnSelection')
+      this.handleTooltipDisplayOn('displayOnSelection');
     } else {
-      this.handleTooltipDisplayOn('displayOnSelection', false)
+      this.handleTooltipDisplayOn('displayOnSelection', false);
     }
 
     setTimeout(() => {
-      return this.relocateTooltips()
-    }, 0)
+      return this.relocateTooltips();
+    }, 0);
 
-    return this.dispatchChangesToSave()
+    return this.dispatchChangesToSave();
   }
 
   dispatchChangesToSave() {
-    clearTimeout(this.saveTimeout)
-    return this.saveTimeout = setTimeout(() => {
-      return this.save.store(this.emitSerializedOutput())
-    }, 100)
+    clearTimeout(this.saveTimeout);
+    return (this.saveTimeout = setTimeout(() => {
+      return this.save.store(this.emitSerializedOutput());
+    }, 100));
   }
 
   setPreContent() {
-    const content = this.emitSerializedOutput()
-    return this.save.editorContent = content
+    const content = this.emitSerializedOutput();
+    return (this.save.editorContent = content);
   }
 
   focus() {
@@ -251,91 +266,96 @@ class DanteEditor extends React.Component {
   //@props.refs.richEditor.focus()
 
   getEditorState() {
-    return this.state.editorState
+    return this.state.editorState;
   }
 
   emitSerializedOutput() {
-    const raw = convertToRaw(this.state.editorState.getCurrentContent())
+    const raw = convertToRaw(this.state.editorState.getCurrentContent());
 
-    return raw
+    return raw;
   }
 
   //# title utils
   getTextFromEditor() {
-    const c = this.state.editorState.getCurrentContent()
-    const out = c.getBlocksAsArray().map(o => {
-      return o.getText()
-    }).join("\n")
+    const c = this.state.editorState.getCurrentContent();
+    const out = c
+      .getBlocksAsArray()
+      .map(o => {
+        return o.getText();
+      })
+      .join('\n');
 
-    return out
+    return out;
   }
 
   emitHTML2() {
-    let html
+    let html;
 
-    return html = convertToHTML({
+    return (html = convertToHTML({
       entityToHTML: (entity, originalText) => {
         if (entity.type === 'LINK') {
-          return `<a href=\"${ entity.data.url }\">${ originalText }</a>`
+          return `<a target='_blank' href=\"${
+            entity.data.url
+          }\">${originalText}</a>`;
         } else {
-          return originalText
+          return originalText;
         }
-      }
-
-    })(this.state.editorState.getCurrentContent())
+      },
+    })(this.state.editorState.getCurrentContent()));
   }
 
   getLocks() {
-    return this.state.locks
+    return this.state.locks;
   }
 
   addLock() {
     return this.setState({
-      locks: this.state.locks += 1 })
+      locks: (this.state.locks += 1),
+    });
   }
 
   removeLock() {
     return this.setState({
-      locks: this.state.locks -= 1 })
+      locks: (this.state.locks -= 1),
+    });
   }
 
   renderableBlocks() {
-    return this.widgets.filter(o => o.renderable).map(o => o.type)
+    return this.widgets.filter(o => o.renderable).map(o => o.type);
   }
 
   defaultWrappers(blockType) {
-    return this.default_wrappers.filter(o => {
-      return o.block === blockType
-    }).map(o => o.className)
+    return this.default_wrappers
+      .filter(o => {
+        return o.block === blockType;
+      })
+      .map(o => o.className);
   }
 
   blockRenderer(block) {
-
     switch (block.getType()) {
+      case 'atomic':
+        const entity = block.getEntityAt(0);
+        const entity_type = Entity.get(entity).getType();
 
-      case "atomic":
-
-        const entity = block.getEntityAt(0)
-        const entity_type = Entity.get(entity).getType()
-
-        break
+        break;
     }
 
     if (this.renderableBlocks().includes(block.getType())) {
-      return this.handleBlockRenderer(block)
+      return this.handleBlockRenderer(block);
     }
 
-    return null
+    return null;
   }
 
   handleBlockRenderer(block) {
-    const dataBlock = this.getDataBlock(block)
+    const dataBlock = this.getDataBlock(block);
     if (!dataBlock) {
-      return null
+      return null;
     }
 
-    const read_only = this.state.read_only ? false : null
-    const editable = read_only !== null ? read_only : dataBlock.editable
+    const read_only = this.state.read_only ? false : null;
+    const editable = read_only !== null ? read_only : dataBlock.editable;
     return {
       component: eval(dataBlock.block),
       editable,
@@ -349,72 +369,73 @@ class DanteEditor extends React.Component {
         enableEditable: this.enableEditable,
         removeLock: this.removeLock,
         getLocks: this.getLocks,
-        config: dataBlock.options
-      }
-    }
+        config: dataBlock.options,
+      },
+    };
 
-    return null
+    return null;
   }
 
   blockStyleFn(block) {
-    const currentBlock = getCurrentBlock(this.state.editorState)
-    const is_selected = currentBlock.getKey() === block.getKey() ? "is-selected" : ""
+    const currentBlock = getCurrentBlock(this.state.editorState);
+    const is_selected =
+      currentBlock.getKey() === block.getKey() ? 'is-selected' : '';
 
     if (this.renderableBlocks().includes(block.getType())) {
-      return this.styleForBlock(block, currentBlock, is_selected)
+      return this.styleForBlock(block, currentBlock, is_selected);
     }
 
-    const defaultBlockClass = this.defaultWrappers(block.getType())
+    const defaultBlockClass = this.defaultWrappers(block.getType());
     if (defaultBlockClass.length > 0) {
-      return `graf ${ defaultBlockClass[0] } ${ is_selected }`
+      return `graf ${defaultBlockClass[0]} ${is_selected}`;
     } else {
-      return `graf nana ${ is_selected }`
+      return `graf nana ${is_selected}`;
     }
   }
 
   getDataBlock(block) {
     return this.widgets.find(o => {
-      return o.type === block.getType()
-    })
+      return o.type === block.getType();
+    });
   }
 
   styleForBlock(block, currentBlock, is_selected) {
-    const dataBlock = this.getDataBlock(block)
+    const dataBlock = this.getDataBlock(block);
 
     if (!dataBlock) {
-      return null
+      return null;
     }
 
-    const selectedFn = dataBlock.selectedFn ? dataBlock.selectedFn(block) : null
-    const selected_class = is_selected ? dataBlock.selected_class : ''
+    const selectedFn = dataBlock.selectedFn
+      ? dataBlock.selectedFn(block)
+      : null;
+    const selected_class = is_selected ? dataBlock.selected_class : '';
 
-    return `${ dataBlock.wrapper_class } ${ selected_class } ${ selectedFn }`
+    return `${dataBlock.wrapper_class} ${selected_class} ${selectedFn}`;
   }
 
   handleTooltipDisplayOn(prop, display) {
-
-    // for button click on after inline style set, 
+    // for button click on after inline style set,
     // avoids inline popver to reappear on previous selection
-    if(this.state.read_only){
-      return  
+    if (this.state.read_only) {
+      return;
     }
 
     if (display == null) {
-      display = true
+      display = true;
     }
-    
+
     return setTimeout(() => {
-      const items = this.tooltipsWithProp(prop)
-      console.log(items)
+      const items = this.tooltipsWithProp(prop);
+      console.log(items);
       return items.map(o => {
-        this.refs[o.ref].display(display)
-        return this.refs[o.ref].relocate()
-      })
-    }, 20)
+        this.refs[o.ref].display(display);
+        return this.refs[o.ref].relocate();
+      });
+    }, 20);
   }
 
   handlePasteText(text, html) {
-
     // https://github.com/facebook/draft-js/issues/685
     /*
     html = "<p>chao</p>
@@ -426,60 +447,77 @@ class DanteEditor extends React.Component {
     // if not html then fallback to default handler
 
     if (!html) {
-      return this.handleTXTPaste(text, html)
+      return this.handleTXTPaste(text, html);
     }
     if (html) {
-      return this.handleHTMLPaste(text, html)
+      return this.handleHTMLPaste(text, html);
     }
   }
 
   handleTXTPaste(text, html) {
-    const currentBlock = getCurrentBlock(this.state.editorState)
+    const currentBlock = getCurrentBlock(this.state.editorState);
 
-    let { editorState } = this.state
+    let {editorState} = this.state;
 
     switch (currentBlock.getType()) {
-      case "image":case "video":case "placeholder":
-        const newContent = Modifier.replaceText(editorState.getCurrentContent(), new SelectionState({
-          anchorKey: currentBlock.getKey(),
-          anchorOffset: 0,
-          focusKey: currentBlock.getKey(),
-          focusOffset: 2
-        }), text)
+      case 'image':
+      case 'video':
+      case 'placeholder':
+        const newContent = Modifier.replaceText(
+          editorState.getCurrentContent(),
+          new SelectionState({
+            anchorKey: currentBlock.getKey(),
+            anchorOffset: 0,
+            focusKey: currentBlock.getKey(),
+            focusOffset: 2,
+          }),
+          text,
+        );
 
-        editorState = EditorState.push(editorState, newContent, 'replace-text')
+        editorState = EditorState.push(editorState, newContent, 'replace-text');
 
-        this.onChange(editorState)
+        this.onChange(editorState);
 
-        return true
+        return true;
       default:
-        return false
+        return false;
     }
   }
 
   handleHTMLPaste(text, html) {
-
-    const currentBlock = getCurrentBlock(this.state.editorState)
+    const currentBlock = getCurrentBlock(this.state.editorState);
 
     // TODO: make this configurable
     switch (currentBlock.getType()) {
-      case "image":case "video":case "placeholder":
-        return this.handleTXTPaste(text, html)
-        break
+      case 'image':
+      case 'video':
+      case 'placeholder':
+        return this.handleTXTPaste(text, html);
+        break;
     }
 
-    const newContentState = customHTML2Content(html, this.extendedBlockRenderMap)
+    const newContentState = customHTML2Content(
+      html,
+      this.extendedBlockRenderMap,
+    );
 
-    const selection = this.state.editorState.getSelection()
-    const endKey = selection.getEndKey()
+    const selection = this.state.editorState.getSelection();
+    const endKey = selection.getEndKey();
 
-    const content = this.state.editorState.getCurrentContent()
-    const blocksBefore = content.blockMap.toSeq().takeUntil(v => v.key === endKey)
-    const blocksAfter = content.blockMap.toSeq().skipUntil(v => v.key === endKey).rest()
+    const content = this.state.editorState.getCurrentContent();
+    const blocksBefore = content.blockMap
+      .toSeq()
+      .takeUntil(v => v.key === endKey);
+    const blocksAfter = content.blockMap
+      .toSeq()
+      .skipUntil(v => v.key === endKey)
+      .rest();
 
-    const newBlockKey = newContentState.blockMap.first().getKey()
+    const newBlockKey = newContentState.blockMap.first().getKey();
 
-    const newBlockMap = blocksBefore.concat(newContentState.blockMap, blocksAfter).toOrderedMap()
+    const newBlockMap = blocksBefore
+      .concat(newContentState.blockMap, blocksAfter)
+      .toOrderedMap();
 
     const newContent = content.merge({
       blockMap: newBlockMap,
@@ -489,15 +527,19 @@ class DanteEditor extends React.Component {
         anchorOffset: 0,
         focusKey: newBlockKey,
         focusOffset: 0,
-        isBackward: false
-      })
-    })
+        isBackward: false,
+      }),
+    });
 
-    const pushedContentState = EditorState.push(this.state.editorState, newContent, 'insert-fragment')
+    const pushedContentState = EditorState.push(
+      this.state.editorState,
+      newContent,
+      'insert-fragment',
+    );
 
-    this.onChange(pushedContentState)
+    this.onChange(pushedContentState);
 
-    return true
+    return true;
   }
 
   handlePasteImage(files) {
@@ -505,93 +547,90 @@ class DanteEditor extends React.Component {
     return files.map(file => {
       let opts = {
         url: URL.createObjectURL(file),
-        file
-      }
+        file,
+      };
 
-      return this.onChange(addNewBlock(this.state.editorState, 'image', opts))
-    })
+      return this.onChange(addNewBlock(this.state.editorState, 'image', opts));
+    });
   }
 
   handleDroppedFiles(state, files) {
     return files.map(file => {
       let opts = {
         url: URL.createObjectURL(file),
-        file
-      }
+        file,
+      };
 
-      return this.onChange(addNewBlock(this.state.editorState, 'image', opts))
-    })
+      return this.onChange(addNewBlock(this.state.editorState, 'image', opts));
+    });
   }
 
   handleUpArrow(e) {
     return setTimeout(() => {
-      return this.forceRender(this.state.editorState)
-    }, 10)
+      return this.forceRender(this.state.editorState);
+    }, 10);
   }
 
   handleDownArrow(e) {
     return setTimeout(() => {
-      return this.forceRender(this.state.editorState)
-    }, 10)
+      return this.forceRender(this.state.editorState);
+    }, 10);
   }
 
   handleReturn(e) {
     if (this.props.handleReturn) {
       if (this.props.handleReturn()) {
-        return true
+        return true;
       }
     }
 
-    let { editorState } = this.state
+    let {editorState} = this.state;
 
     if (e.shiftKey) {
-      this.setState({ editorState: RichUtils.insertSoftNewline(editorState) });
+      this.setState({editorState: RichUtils.insertSoftNewline(editorState)});
       return true;
     }
 
-
     if (!e.altKey && !e.metaKey && !e.ctrlKey) {
-      const currentBlock = getCurrentBlock(editorState)
-      const blockType = currentBlock.getType()
-      const selection = editorState.getSelection()
+      const currentBlock = getCurrentBlock(editorState);
+      const blockType = currentBlock.getType();
+      const selection = editorState.getSelection();
 
-      const config_block = this.getDataBlock(currentBlock)
+      const config_block = this.getDataBlock(currentBlock);
 
       if (currentBlock.getText().length === 0) {
-
         if (config_block && config_block.handleEnterWithoutText) {
-          config_block.handleEnterWithoutText(this, currentBlock)
-          this.closePopOvers()
-          return true
+          config_block.handleEnterWithoutText(this, currentBlock);
+          this.closePopOvers();
+          return true;
         }
 
         //TODO turn this in configurable
         switch (blockType) {
-          case "header-one":
-            this.onChange(resetBlockWithType(editorState, "unstyled"))
-            return true
-            break
+          case 'header-one':
+            this.onChange(resetBlockWithType(editorState, 'unstyled'));
+            return true;
+            break;
           default:
-            return false
+            return false;
         }
       }
 
       if (currentBlock.getText().length > 0) {
-
         if (config_block && config_block.handleEnterWithText) {
-          config_block.handleEnterWithText(this, currentBlock)
-          this.closePopOvers()
-          return true
+          config_block.handleEnterWithText(this, currentBlock);
+          this.closePopOvers();
+          return true;
         }
 
         if (currentBlock.getLength() === selection.getStartOffset()) {
           if (this.continuousBlocks.indexOf(blockType) < 0) {
-            this.onChange(addNewBlockAt(editorState, currentBlock.getKey()))
-            return true
+            this.onChange(addNewBlockAt(editorState, currentBlock.getKey()));
+            return true;
           }
         }
 
-        return false
+        return false;
       }
 
       // selection.isCollapsed() and # should we check collapsed here?
@@ -599,13 +638,13 @@ class DanteEditor extends React.Component {
         //or (config_block && config_block.breakOnContinuous))
         // it will match the unstyled for custom blocks
         if (this.continuousBlocks.indexOf(blockType) < 0) {
-          this.onChange(addNewBlockAt(editorState, currentBlock.getKey()))
-          return true
+          this.onChange(addNewBlockAt(editorState, currentBlock.getKey()));
+          return true;
         }
-        return false
+        return false;
       }
 
-      return false
+      return false;
     }
   }
 
@@ -613,103 +652,119 @@ class DanteEditor extends React.Component {
 
   // TODO: make this configurable
   handleBeforeInput(chars) {
-    const currentBlock = getCurrentBlock(this.state.editorState)
-    const blockType = currentBlock.getType()
-    const selection = this.state.editorState.getSelection()
+    const currentBlock = getCurrentBlock(this.state.editorState);
+    const blockType = currentBlock.getType();
+    const selection = this.state.editorState.getSelection();
 
-    let { editorState } = this.state
+    let {editorState} = this.state;
 
     // close popovers
     if (currentBlock.getText().length !== 0) {
       //@closeInlineButton()
-      this.closePopOvers()
+      this.closePopOvers();
     }
 
     // handle space on link
-    const endOffset = selection.getEndOffset()
-    const endKey = currentBlock.getEntityAt(endOffset - 1)
-    const endEntityType = endKey && Entity.get(endKey).getType()
-    const afterEndKey = currentBlock.getEntityAt(endOffset)
-    const afterEndEntityType = afterEndKey && Entity.get(afterEndKey).getType()
+    const endOffset = selection.getEndOffset();
+    const endKey = currentBlock.getEntityAt(endOffset - 1);
+    const endEntityType = endKey && Entity.get(endKey).getType();
+    const afterEndKey = currentBlock.getEntityAt(endOffset);
+    const afterEndEntityType = afterEndKey && Entity.get(afterEndKey).getType();
 
     // will insert blank space when link found
-    if (chars === ' ' && endEntityType === 'LINK' && afterEndEntityType !== 'LINK') {
-      const newContentState = Modifier.insertText(editorState.getCurrentContent(), selection, ' ')
-      const newEditorState = EditorState.push(editorState, newContentState, 'insert-characters')
-      this.onChange(newEditorState)
-      return true
+    if (
+      chars === ' ' &&
+      endEntityType === 'LINK' &&
+      afterEndEntityType !== 'LINK'
+    ) {
+      const newContentState = Modifier.insertText(
+        editorState.getCurrentContent(),
+        selection,
+        ' ',
+      );
+      const newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        'insert-characters',
+      );
+      this.onChange(newEditorState);
+      return true;
     }
 
     // block transform
     if (blockType.indexOf('atomic') === 0) {
-      return false
+      return false;
     }
 
-    const blockLength = currentBlock.getLength()
+    const blockLength = currentBlock.getLength();
     if (selection.getAnchorOffset() > 1 || blockLength > 1) {
-      return false
+      return false;
     }
 
-    const blockTo = this.character_convert_mapping[currentBlock.getText() + chars]
+    const blockTo = this.character_convert_mapping[
+      currentBlock.getText() + chars
+    ];
 
-    console.log(`BLOCK TO SHOW: ${ blockTo }`)
+    console.log(`BLOCK TO SHOW: ${blockTo}`);
 
     if (!blockTo) {
-      return false
+      return false;
     }
 
-    this.onChange(resetBlockWithType(editorState, blockTo))
+    this.onChange(resetBlockWithType(editorState, blockTo));
 
-    return true
+    return true;
   }
 
   // TODO: make this configurable
   handleKeyCommand(command) {
-    const { editorState } = this.state
-    let currentBlockType, newBlockType
+    const {editorState} = this.state;
+    let currentBlockType, newBlockType;
 
     if (this.props.handleKeyCommand && this.props.handleKeyCommand(command)) {
-      return true
+      return true;
     }
 
     if (command === 'add-new-block') {
-      this.onChange(addNewBlock(editorState, 'blockquote'))
-      return true
+      this.onChange(addNewBlock(editorState, 'blockquote'));
+      return true;
     }
 
-    const block = getCurrentBlock(editorState)
+    const block = getCurrentBlock(editorState);
 
     if (command.indexOf('toggle_inline:') === 0) {
-      newBlockType = command.split(':')[1]
-      currentBlockType = block.getType()
-      this.onChange(RichUtils.toggleInlineStyle(editorState, newBlockType))
-      return true
+      newBlockType = command.split(':')[1];
+      currentBlockType = block.getType();
+      this.onChange(RichUtils.toggleInlineStyle(editorState, newBlockType));
+      return true;
     }
 
     if (command.indexOf('toggle_block:') === 0) {
-      newBlockType = command.split(':')[1]
-      currentBlockType = block.getType()
+      newBlockType = command.split(':')[1];
+      currentBlockType = block.getType();
 
-      this.onChange(RichUtils.toggleBlockType(editorState, newBlockType))
-      return true
+      this.onChange(RichUtils.toggleBlockType(editorState, newBlockType));
+      return true;
     }
 
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
+    const newState = RichUtils.handleKeyCommand(
+      this.state.editorState,
+      command,
+    );
     if (newState) {
-      this.onChange(newState)
-      return true
+      this.onChange(newState);
+      return true;
     }
 
-    return false
+    return false;
   }
 
   findCommandKey(opt, command) {
     // console.log "COMMAND find: #{opt} #{command}"
-    return this.key_commands[opt].find(o => o.key === command)
+    return this.key_commands[opt].find(o => o.key === command);
   }
 
   KeyBindingFn(e) {
-
     //⌘ + B / Ctrl + B   Bold
     //⌘ + I / Ctrl + I   Italic
     //⌘ + K / Ctrl + K   Turn into link
@@ -717,93 +772,95 @@ class DanteEditor extends React.Component {
     //⌘ + Alt + 2 / Ctrl + Alt + 2   Sub-Header
     //⌘ + Alt + 5 / Ctrl + Alt + 5   Quote (Press once for a block quote, again for a pull quote and a third time to turn off quote)
 
-    let cmd
+    let cmd;
     if (e.altKey) {
       if (e.shiftKey) {
-        cmd = this.findCommandKey("alt-shift", e.which)
+        cmd = this.findCommandKey('alt-shift', e.which);
         if (cmd) {
-          return cmd.cmd
+          return cmd.cmd;
         }
 
-        return getDefaultKeyBinding(e)
+        return getDefaultKeyBinding(e);
       }
 
       if (e.ctrlKey || e.metaKey) {
-        cmd = this.findCommandKey("alt-cmd", e.which)
+        cmd = this.findCommandKey('alt-cmd', e.which);
         if (cmd) {
-          return cmd.cmd
+          return cmd.cmd;
         }
-        return getDefaultKeyBinding(e)
+        return getDefaultKeyBinding(e);
       }
     } else if (e.ctrlKey || e.metaKey) {
-      cmd = this.findCommandKey("cmd", e.which)
+      cmd = this.findCommandKey('cmd', e.which);
       if (cmd) {
-        return cmd.cmd
+        return cmd.cmd;
       }
-      return getDefaultKeyBinding(e)
+      return getDefaultKeyBinding(e);
     }
 
-    return getDefaultKeyBinding(e)
+    return getDefaultKeyBinding(e);
   }
 
   // will update block state todo: movo to utils
   updateBlockData(block, options) {
-    const data = block.getData()
-    const newData = data.merge(options)
-    const newState = updateDataOfBlock(this.state.editorState, block, newData)
+    const data = block.getData();
+    const newData = data.merge(options);
+    const newState = updateDataOfBlock(this.state.editorState, block, newData);
     // this fixes enter from image caption
-    return this.forceRender(newState)
+    return this.forceRender(newState);
   }
 
   setDirection(direction_type) {
-    const contentState = this.state.editorState.getCurrentContent()
-    const selectionState = this.state.editorState.getSelection()
-    const block = contentState.getBlockForKey(selectionState.anchorKey)
+    const contentState = this.state.editorState.getCurrentContent();
+    const selectionState = this.state.editorState.getSelection();
+    const block = contentState.getBlockForKey(selectionState.anchorKey);
 
-    return this.updateBlockData(block, { direction: direction_type })
+    return this.updateBlockData(block, {direction: direction_type});
   }
 
   //# read only utils
   toggleEditable() {
-    this.closePopOvers()
-    return this.setState({ read_only: !this.state.read_only }, this.testEmitAndDecode)
+    this.closePopOvers();
+    return this.setState(
+      {read_only: !this.state.read_only},
+      this.testEmitAndDecode,
+    );
   }
 
   disableEditable() {
-    console.log("in !!")
-    this.closePopOvers()
-    return this.setState({ read_only: true }, this.testEmitAndDecode)
+    console.log('in !!');
+    this.closePopOvers();
+    return this.setState({read_only: true}, this.testEmitAndDecode);
   }
 
   enableEditable() {
-    this.closePopOvers()
-    console.log("out !!")
-    return this.setState({ read_only: false }, this.testEmitAndDecode)
+    this.closePopOvers();
+    console.log('out !!');
+    return this.setState({read_only: false}, this.testEmitAndDecode);
   }
 
   closePopOvers() {
     return this.tooltips.map(o => {
-      return this.refs[o.ref].hide()
-    })
+      return this.refs[o.ref].hide();
+    });
   }
 
   relocateTooltips() {
-    if (this.state.read_only)
-      return 
+    if (this.state.read_only) return;
 
     return this.tooltips.map(o => {
-      return this.refs[o.ref].relocate()
-    })
+      return this.refs[o.ref].relocate();
+    });
   }
 
   tooltipsWithProp(prop) {
     return this.tooltips.filter(o => {
-      return o[prop]
-    })
+      return o[prop];
+    });
   }
 
   tooltipHasSelectionElement(tooltip, element) {
-    return tooltip.selectionElements.includes(element)
+    return tooltip.selectionElements.includes(element);
   }
 
   //################################
@@ -811,53 +868,55 @@ class DanteEditor extends React.Component {
   //################################
 
   handleShowPopLinkOver(e) {
-    return this.showPopLinkOver()
+    return this.showPopLinkOver();
   }
 
   handleHidePopLinkOver(e) {
-    return this.hidePopLinkOver()
+    return this.hidePopLinkOver();
   }
 
   showPopLinkOver(el) {
     // handles popover display
     // using anchor or from popover
 
-    const parent_el = ReactDOM.findDOMNode(this)
+    const parent_el = ReactDOM.findDOMNode(this);
 
     // set url first in order to calculate popover width
-    let coords
-    this.refs.anchor_popover.setState({ url: el ? el.href : this.refs.anchor_popover.state.url })
+    let coords;
+    this.refs.anchor_popover.setState({
+      url: el ? el.href : this.refs.anchor_popover.state.url,
+    });
 
     if (el) {
-      coords = this.refs.anchor_popover.relocate(el)
+      coords = this.refs.anchor_popover.relocate(el);
     }
 
     if (coords) {
-      this.refs.anchor_popover.setPosition(coords)
+      this.refs.anchor_popover.setPosition(coords);
     }
 
-    this.refs.anchor_popover.setState({ show: true })
+    this.refs.anchor_popover.setState({show: true});
 
-    this.isHover = true
-    return this.cancelHide()
+    this.isHover = true;
+    return this.cancelHide();
   }
 
   hidePopLinkOver() {
-    return this.hideTimeout = setTimeout(() => {
-      return this.refs.anchor_popover.hide()
-    }, 300)
+    return (this.hideTimeout = setTimeout(() => {
+      return this.refs.anchor_popover.hide();
+    }, 300));
   }
 
   cancelHide() {
     // console.log "Cancel Hide"
-    return clearTimeout(this.hideTimeout)
+    return clearTimeout(this.hideTimeout);
   }
 
   //##############################
 
   render() {
     return (
-      <div id="content" suppressContentEditableWarning={ true }>
+      <div id="content" suppressContentEditableWarning={true}>
         <article className="postArticle">
           <div className="postContent">
             <div className="notesSource">
@@ -867,27 +926,28 @@ class DanteEditor extends React.Component {
                     <hr className="section-divider" />
                   </div>
                   <div className="section-content">
-                    <div ref="richEditor" 
-                        className="section-inner layoutSingleColumn"
-                        onClick={ this.focus }>
+                    <div
+                      ref="richEditor"
+                      className="section-inner layoutSingleColumn"
+                      onClick={this.focus}>
                       <Editor
-                        blockRendererFn={ this.blockRenderer }
-                        editorState={ this.state.editorState }
-                        onChange={ this.onChange }
-                        onUpArrow={ this.handleUpArrow }
-                        onDownArrow={ this.handleDownArrow }
-                        handleReturn={ this.handleReturn }
-                        blockRenderMap={ this.state.blockRenderMap }
-                        blockStyleFn={ this.blockStyleFn }
-                        customStyleFn={this.customStyleFn }
-                        handlePastedText={ this.handlePasteText }
-                        handlePastedFiles={ this.handlePasteImage }
-                        handleDroppedFiles={ this.handleDroppedFiles }
-                        handleKeyCommand={ this.handleKeyCommand }
-                        keyBindingFn={ this.KeyBindingFn }
-                        handleBeforeInput={ this.handleBeforeInput }
-                        readOnly={ this.state.read_only }
-                        placeholder={ this.props.config.body_placeholder }
+                        blockRendererFn={this.blockRenderer}
+                        editorState={this.state.editorState}
+                        onChange={this.onChange}
+                        onUpArrow={this.handleUpArrow}
+                        onDownArrow={this.handleDownArrow}
+                        handleReturn={this.handleReturn}
+                        blockRenderMap={this.state.blockRenderMap}
+                        blockStyleFn={this.blockStyleFn}
+                        customStyleFn={this.customStyleFn}
+                        handlePastedText={this.handlePasteText}
+                        handlePastedFiles={this.handlePasteImage}
+                        handleDroppedFiles={this.handleDroppedFiles}
+                        handleKeyCommand={this.handleKeyCommand}
+                        keyBindingFn={this.KeyBindingFn}
+                        handleBeforeInput={this.handleBeforeInput}
+                        readOnly={this.state.read_only}
+                        placeholder={this.props.config.body_placeholder}
                         ref="editor"
                       />
                     </div>
@@ -897,35 +957,32 @@ class DanteEditor extends React.Component {
             </div>
           </div>
         </article>
-        {
-          this.tooltips.map( (o, i) => {
-            return (
-              <o.component
-                ref={ o.ref }
-                key={ i }
-                editor={ this }
-                editorState={ this.state.editorState }
-                onChange={ this.onChange }
-                styles={this.styles}
-                configTooltip={ o }
-                widget_options={ o.widget_options }
-                showPopLinkOver={ this.showPopLinkOver }
-                hidePopLinkOver={ this.hidePopLinkOver }
-                handleOnMouseOver={ this.handleShowPopLinkOver }
-                handleOnMouseOut={ this.handleHidePopLinkOver }
-              />
-            )
-          })
-        }
-        {
-          this.state.debug
-          ? <Debug locks={ this.state.locks } editor={ this } />
-          : undefined
-        }
+        {this.tooltips.map((o, i) => {
+          return (
+            <o.component
+              ref={o.ref}
+              key={i}
+              editor={this}
+              editorState={this.state.editorState}
+              onChange={this.onChange}
+              styles={this.styles}
+              configTooltip={o}
+              widget_options={o.widget_options}
+              showPopLinkOver={this.showPopLinkOver}
+              hidePopLinkOver={this.hidePopLinkOver}
+              handleOnMouseOver={this.handleShowPopLinkOver}
+              handleOnMouseOut={this.handleHidePopLinkOver}
+            />
+          );
+        })}
+        {this.state.debug ? (
+          <Debug locks={this.state.locks} editor={this} />
+        ) : (
+          undefined
+        )}
       </div>
-
-    )
+    );
   }
 }
 
-export default DanteEditor
+export default DanteEditor;

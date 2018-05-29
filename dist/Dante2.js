@@ -34958,28 +34958,27 @@ var DanteEditor = function (_React$Component) {
     }]);
 
     _this.blockRenderMap = (0, _immutable.Map)({
-      "image": {
+      image: {
         element: 'figure'
       },
-      "video": {
+      video: {
         element: 'figure'
       },
-      "embed": {
+      embed: {
         element: 'div'
       },
-      'unstyled': {
+      unstyled: {
         wrapper: null,
         element: 'div'
       },
-      'paragraph': {
+      paragraph: {
         wrapper: null,
         element: 'div'
       },
-      'placeholder': {
+      placeholder: {
         wrapper: null,
         element: 'div'
       }
-
     });
 
     _this.extendedBlockRenderMap = _draftJs.DefaultDraftBlockRenderMap.merge(_this.blockRenderMap);
@@ -35085,7 +35084,6 @@ var DanteEditor = function (_React$Component) {
     var blockType = currentBlock.getType();
 
     if (!editorState.getSelection().isCollapsed()) {
-
       var tooltip = this.tooltipsWithProp('displayOnSelection')[0];
       if (!this.tooltipHasSelectionElement(tooltip, blockType)) {
         return;
@@ -35140,7 +35138,7 @@ var DanteEditor = function (_React$Component) {
     var c = this.state.editorState.getCurrentContent();
     var out = c.getBlocksAsArray().map(function (o) {
       return o.getText();
-    }).join("\n");
+    }).join('\n');
 
     return out;
   };
@@ -35151,12 +35149,11 @@ var DanteEditor = function (_React$Component) {
     return html = (0, _draftConvert.convertToHTML)({
       entityToHTML: function entityToHTML(entity, originalText) {
         if (entity.type === 'LINK') {
-          return '<a href="' + entity.data.url + '">' + originalText + '</a>';
+          return '<a target=\'_blank\' href="' + entity.data.url + '">' + originalText + '</a>';
         } else {
           return originalText;
         }
       }
-
     })(this.state.editorState.getCurrentContent());
   };
 
@@ -35166,12 +35163,14 @@ var DanteEditor = function (_React$Component) {
 
   DanteEditor.prototype.addLock = function addLock() {
     return this.setState({
-      locks: this.state.locks += 1 });
+      locks: this.state.locks += 1
+    });
   };
 
   DanteEditor.prototype.removeLock = function removeLock() {
     return this.setState({
-      locks: this.state.locks -= 1 });
+      locks: this.state.locks -= 1
+    });
   };
 
   DanteEditor.prototype.renderableBlocks = function renderableBlocks() {
@@ -35191,11 +35190,8 @@ var DanteEditor = function (_React$Component) {
   };
 
   DanteEditor.prototype.blockRenderer = function blockRenderer(block) {
-
     switch (block.getType()) {
-
-      case "atomic":
-
+      case 'atomic':
         var entity = block.getEntityAt(0);
         var entity_type = _draftJs.Entity.get(entity).getType();
 
@@ -35239,7 +35235,7 @@ var DanteEditor = function (_React$Component) {
 
   DanteEditor.prototype.blockStyleFn = function blockStyleFn(block) {
     var currentBlock = (0, _index.getCurrentBlock)(this.state.editorState);
-    var is_selected = currentBlock.getKey() === block.getKey() ? "is-selected" : "";
+    var is_selected = currentBlock.getKey() === block.getKey() ? 'is-selected' : '';
 
     if (this.renderableBlocks().includes(block.getType())) {
       return this.styleForBlock(block, currentBlock, is_selected);
@@ -35275,7 +35271,7 @@ var DanteEditor = function (_React$Component) {
   DanteEditor.prototype.handleTooltipDisplayOn = function handleTooltipDisplayOn(prop, display) {
     var _this4 = this;
 
-    // for button click on after inline style set, 
+    // for button click on after inline style set,
     // avoids inline popver to reappear on previous selection
     if (this.state.read_only) {
       return;
@@ -35296,7 +35292,6 @@ var DanteEditor = function (_React$Component) {
   };
 
   DanteEditor.prototype.handlePasteText = function handlePasteText(text, html) {
-
     // https://github.com/facebook/draft-js/issues/685
     /*
     html = "<p>chao</p>
@@ -35322,7 +35317,9 @@ var DanteEditor = function (_React$Component) {
 
 
     switch (currentBlock.getType()) {
-      case "image":case "video":case "placeholder":
+      case 'image':
+      case 'video':
+      case 'placeholder':
         var newContent = _draftJs.Modifier.replaceText(editorState.getCurrentContent(), new _draftJs.SelectionState({
           anchorKey: currentBlock.getKey(),
           anchorOffset: 0,
@@ -35341,12 +35338,13 @@ var DanteEditor = function (_React$Component) {
   };
 
   DanteEditor.prototype.handleHTMLPaste = function handleHTMLPaste(text, html) {
-
     var currentBlock = (0, _index.getCurrentBlock)(this.state.editorState);
 
     // TODO: make this configurable
     switch (currentBlock.getType()) {
-      case "image":case "video":case "placeholder":
+      case 'image':
+      case 'video':
+      case 'placeholder':
         return this.handleTXTPaste(text, html);
         break;
     }
@@ -35453,7 +35451,6 @@ var DanteEditor = function (_React$Component) {
       var config_block = this.getDataBlock(currentBlock);
 
       if (currentBlock.getText().length === 0) {
-
         if (config_block && config_block.handleEnterWithoutText) {
           config_block.handleEnterWithoutText(this, currentBlock);
           this.closePopOvers();
@@ -35462,8 +35459,8 @@ var DanteEditor = function (_React$Component) {
 
         //TODO turn this in configurable
         switch (blockType) {
-          case "header-one":
-            this.onChange((0, _index.resetBlockWithType)(editorState, "unstyled"));
+          case 'header-one':
+            this.onChange((0, _index.resetBlockWithType)(editorState, 'unstyled'));
             return true;
             break;
           default:
@@ -35472,7 +35469,6 @@ var DanteEditor = function (_React$Component) {
       }
 
       if (currentBlock.getText().length > 0) {
-
         if (config_block && config_block.handleEnterWithText) {
           config_block.handleEnterWithText(this, currentBlock);
           this.closePopOvers();
@@ -35613,7 +35609,6 @@ var DanteEditor = function (_React$Component) {
   };
 
   DanteEditor.prototype.KeyBindingFn = function KeyBindingFn(e) {
-
     //⌘ + B / Ctrl + B   Bold
     //⌘ + I / Ctrl + I   Italic
     //⌘ + K / Ctrl + K   Turn into link
@@ -35624,7 +35619,7 @@ var DanteEditor = function (_React$Component) {
     var cmd = void 0;
     if (e.altKey) {
       if (e.shiftKey) {
-        cmd = this.findCommandKey("alt-shift", e.which);
+        cmd = this.findCommandKey('alt-shift', e.which);
         if (cmd) {
           return cmd.cmd;
         }
@@ -35633,14 +35628,14 @@ var DanteEditor = function (_React$Component) {
       }
 
       if (e.ctrlKey || e.metaKey) {
-        cmd = this.findCommandKey("alt-cmd", e.which);
+        cmd = this.findCommandKey('alt-cmd', e.which);
         if (cmd) {
           return cmd.cmd;
         }
         return (0, _draftJs.getDefaultKeyBinding)(e);
       }
     } else if (e.ctrlKey || e.metaKey) {
-      cmd = this.findCommandKey("cmd", e.which);
+      cmd = this.findCommandKey('cmd', e.which);
       if (cmd) {
         return cmd.cmd;
       }
@@ -35678,14 +35673,14 @@ var DanteEditor = function (_React$Component) {
   };
 
   DanteEditor.prototype.disableEditable = function disableEditable() {
-    console.log("in !!");
+    console.log('in !!');
     this.closePopOvers();
     return this.setState({ read_only: true }, this.testEmitAndDecode);
   };
 
   DanteEditor.prototype.enableEditable = function enableEditable() {
     this.closePopOvers();
-    console.log("out !!");
+    console.log('out !!');
     return this.setState({ read_only: false }, this.testEmitAndDecode);
   };
 
@@ -35737,7 +35732,9 @@ var DanteEditor = function (_React$Component) {
 
     // set url first in order to calculate popover width
     var coords = void 0;
-    this.refs.anchor_popover.setState({ url: el ? el.href : this.refs.anchor_popover.state.url });
+    this.refs.anchor_popover.setState({
+      url: el ? el.href : this.refs.anchor_popover.state.url
+    });
 
     if (el) {
       coords = this.refs.anchor_popover.relocate(el);
@@ -35799,7 +35796,8 @@ var DanteEditor = function (_React$Component) {
                   { className: 'section-content' },
                   _react2['default'].createElement(
                     'div',
-                    { ref: 'richEditor',
+                    {
+                      ref: 'richEditor',
                       className: 'section-inner layoutSingleColumn',
                       onClick: this.focus },
                     _react2['default'].createElement(_draftJs.Editor, {
