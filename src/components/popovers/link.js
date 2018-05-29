@@ -35,7 +35,7 @@ class DanteAnchorPopover extends React.Component {
 
   show() {
     return this.setState({
-      show: true,
+      show: false,
     });
   }
 
@@ -97,12 +97,7 @@ class DanteAnchorPopover extends React.Component {
     var padding = 15;
 
     var tooltipTop =
-      selectionBoundary.top -
-      parentBoundary.top +
-      10 +
-      padding -
-      carretSize -
-      1;
+      selectionBoundary.top - parentBoundary.top + 10 + padding - carretSize;
     var tooltipLeft =
       selectionBoundary.left -
       parentBoundary.left +
@@ -112,6 +107,7 @@ class DanteAnchorPopover extends React.Component {
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
     return this.setState({
+      show: true,
       position: {
         left: left,
         top: top,

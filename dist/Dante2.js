@@ -40772,7 +40772,7 @@ var DanteAnchorPopover = function (_React$Component) {
 
   DanteAnchorPopover.prototype.show = function show() {
     return this.setState({
-      show: true
+      show: false
     });
   };
 
@@ -40830,11 +40830,12 @@ var DanteAnchorPopover = function (_React$Component) {
     var carretSize = 6;
     var padding = 15;
 
-    var tooltipTop = selectionBoundary.top - parentBoundary.top + 10 + padding - carretSize - 1;
+    var tooltipTop = selectionBoundary.top - parentBoundary.top + 10 + padding - carretSize;
     var tooltipLeft = selectionBoundary.left - parentBoundary.left + selectionBoundary.width / 2 - padding - carretSize / 2;
 
     // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
     return this.setState({
+      show: true,
       position: {
         left: left,
         top: top
