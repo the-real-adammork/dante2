@@ -21,14 +21,14 @@ var Link = function (_React$Component) {
   }
 
   Link.prototype._validateLink = function _validateLink() {
-    var pattern = new RegExp('^(https?:\/\/)?' + // protocol
-    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|' + // domain name
-    '((\d{1,3}\.){3}\d{1,3}))' + // OR ip (v4) address
-    '(\:\d+)?(\/[-a-z\d%_.~+]*)*' + // port and path
-    '(\?[&a-z\d%_.~+=-]*)?' + // query string
-    '(\#[-a-z\d_]*)?$', 'i'); // fragment locater
+    var pattern = new RegExp('^(https?://)?' + // protocol
+    '((([a-zd]([a-zd-]*[a-zd])*).)+[a-z]{2,}|' + // domain name
+    '((d{1,3}.){3}d{1,3}))' + // OR ip (v4) address
+    '(:d+)?(/[-a-zd%_.~+]*)*' + // port and path
+    '(?[&a-zd%_.~+=-]*)?' + // query string
+    '(#[-a-zd_]*)?$', 'i'); // fragment locater
     if (!pattern.test(str)) {
-      alert("Please enter a valid URL.");
+      alert('Please enter a valid URL.');
       return false;
     } else {
       return true;
@@ -36,7 +36,7 @@ var Link = function (_React$Component) {
   };
 
   Link.prototype._checkProtocol = function _checkProtocol() {
-    return console.log("xcvd");
+    return console.log('xcvd');
   };
 
   Link.prototype._showPopLinkOver = function _showPopLinkOver(e) {
@@ -61,11 +61,11 @@ var Link = function (_React$Component) {
       'a',
       {
         ref: 'link',
+        target: '_blank',
         href: this.data.url,
         className: 'markup--anchor',
         onMouseOver: this._showPopLinkOver,
-        onMouseOut: this._hidePopLinkOver
-      },
+        onMouseOut: this._hidePopLinkOver },
       this.props.children
     );
   };
