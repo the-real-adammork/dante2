@@ -40852,13 +40852,18 @@ var DanteAnchorPopover = function (_React$Component) {
       top: position.top,
       visibility: '' + (this.state.show ? 'visible' : 'hidden')
     };
+    // visibility is always hidden.
+    // Temporary fix to minize visual disruption with the delayed reloaction behavior of this component
+    // If we show the carret, it's position is off and the link box is off and it looks alot worse having them
+    // disjointed then combined. Id rather just have the link box relocate then have two boxes relocate to become 1.
+
     var carretStyle = {
       zIndex: 90000,
       transform: 'rotate(45deg)',
       position: 'absolute',
       top: this.state.tooltipPosition.top + 'px',
       left: this.state.tooltipPosition.left + 'px',
-      visibility: '' + (this.state.show ? 'visible' : 'hidden')
+      visibility: '\'hidden\''
     };
     return _react2['default'].createElement(
       'div',
