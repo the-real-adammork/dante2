@@ -3577,10 +3577,10 @@ var DanteAnchorPopover = function (_React$Component) {
       }
 
       var carretSize = 6;
-      var padding = 20;
+      var padding = 15;
 
       var tooltipTop = selectionBoundary.top - parentBoundary.top + 10 + padding - carretSize - 5;
-      var tooltipLeft = selectionBoundary.left - parentBoundary.left + selectionBoundary.width / 2 - padding - carretSize;
+      var tooltipLeft = selectionBoundary.left - parentBoundary.left + selectionBoundary.width / 2 - padding - carretSize / 2;
 
       // console.log "SET SHOW FOR TOOLTIP INSERT MENU"
       return this.setState({
@@ -3600,11 +3600,13 @@ var DanteAnchorPopover = function (_React$Component) {
       var position = this.state.position;
 
       var style = {
+        zIndex: 90000,
         left: position.left,
         top: position.top,
         visibility: '' + (this.state.show ? 'visible' : 'hidden')
       };
       var carretStyle = {
+        zIndex: 90000,
         transform: 'rotate(45deg)',
         position: 'absolute',
         top: this.state.tooltipPosition.top + 'px',
