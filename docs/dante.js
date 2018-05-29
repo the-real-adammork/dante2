@@ -3516,11 +3516,7 @@ var DanteAnchorPopover = function (_React$Component) {
     }
   }, {
     key: 'show',
-    value: function show() {
-      return this.setState({
-        show: false
-      });
-    }
+    value: function show() {}
   }, {
     key: 'hide',
     value: function hide() {

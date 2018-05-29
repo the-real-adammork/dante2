@@ -33,11 +33,7 @@ class DanteAnchorPopover extends React.Component {
     }
   }
 
-  show() {
-    return this.setState({
-      show: false,
-    });
-  }
+  show() {}
 
   hide() {
     return this.setState({

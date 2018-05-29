@@ -42,11 +42,7 @@ var DanteAnchorPopover = function (_React$Component) {
     }
   };
 
-  DanteAnchorPopover.prototype.show = function show() {
-    return this.setState({
-      show: false
-    });
-  };
+  DanteAnchorPopover.prototype.show = function show() {};
 
   DanteAnchorPopover.prototype.hide = function hide() {
     return this.setState({
