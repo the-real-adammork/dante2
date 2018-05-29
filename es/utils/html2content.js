@@ -1,15 +1,7 @@
-import _JSON$stringify from "babel-runtime/core-js/json/stringify";
-import {
-  ContentState,
-  genKey,
-  Entity,
-  CharacterMetadata,
-  ContentBlock,
-  convertFromHTML,
-  getSafeBodyFromHTML
-} from "draft-js";
+import _JSON$stringify from 'babel-runtime/core-js/json/stringify';
+import { ContentState, genKey, Entity, CharacterMetadata, ContentBlock, convertFromHTML, getSafeBodyFromHTML } from 'draft-js';
 
-import { List, OrderedSet, Repeat, fromJS } from "immutable";
+import { List, OrderedSet, Repeat, fromJS } from 'immutable';
 
 // { compose
 // }  = require('underscore')
@@ -18,7 +10,7 @@ import { List, OrderedSet, Repeat, fromJS } from "immutable";
 var compose = function compose() {
   var args = arguments;
   var start = args.length - 1;
-  return function() {
+  return function () {
     var i = start;
     var result = args[start].apply(this, arguments);
     while (i--) {
@@ -37,8 +29,8 @@ var compose = function compose() {
 // Prepares img meta data object based on img attributes
 var getBlockSpecForElement = function getBlockSpecForElement(imgElement) {
   return {
-    contentType: "image",
-    imgSrc: imgElement.getAttribute("src")
+    contentType: 'image',
+    imgSrc: imgElement.getAttribute('src')
   };
 };
 
@@ -48,7 +40,7 @@ var wrapBlockSpec = function wrapBlockSpec(blockSpec) {
     return null;
   }
 
-  var tempEl = document.createElement("blockquote");
+  var tempEl = document.createElement('blockquote');
   // stringify meta data and insert it as text content of temp HTML element. We will later extract
   // and parse it.
   tempEl.innerText = _JSON$stringify(blockSpec);
@@ -70,10 +62,10 @@ var replaceElement = function replaceElement(oldEl, newEl) {
 var getUpEl = function getUpEl(el) {
   var original_el = el;
   while (el.parentNode) {
-    if (el.parentNode.tagName !== "BODY") {
+    if (el.parentNode.tagName !== 'BODY') {
       el = el.parentNode;
     }
-    if (el.parentNode.tagName === "BODY") {
+    if (el.parentNode.tagName === 'BODY') {
       return el;
     }
   }
@@ -91,27 +83,25 @@ var imgReplacer = function imgReplacer(imgElement) {
 
 // takes HTML string and returns DraftJS ContentState
 var customHTML2Content = function customHTML2Content(HTML, blockRn) {
-  var tempDoc = new DOMParser().parseFromString(HTML, "text/html");
+  var tempDoc = new DOMParser().parseFromString(HTML, 'text/html');
   // replace all <img /> with <blockquote /> elements
 
-  var a = tempDoc.querySelectorAll("img").forEach(function(item) {
+  var a = tempDoc.querySelectorAll('img').forEach(function (item) {
     return imgReplacer(item);
   });
 
   // use DraftJS converter to do initial conversion. I don't provide DOMBuilder and
   // blockRenderMap arguments here since it should fall back to its default ones, which are fine
-  var content = convertFromHTML(
-    tempDoc.body.innerHTML,
-    getSafeBodyFromHTML,
-    blockRn
-  );
+  console.log(tempDoc.body.innerHTML);
+  var content = convertFromHTML(tempDoc.body.innerHTML, getSafeBodyFromHTML, blockRn);
 
   var contentBlocks = content.contentBlocks;
 
   // now replace <blockquote /> ContentBlocks with 'atomic' ones
-  contentBlocks = contentBlocks.map(function(block) {
+  contentBlocks = contentBlocks.map(function (block) {
     var newBlock = void 0;
-    if (block.getType() !== "blockquote") {
+    console.log("CHECK BLOCK", block.getType());
+    if (block.getType() !== 'blockquote') {
       return block;
     }
 
@@ -122,14 +112,14 @@ var customHTML2Content = function customHTML2Content(HTML, blockRn) {
       return block;
     }
 
-    return (newBlock = block.merge({
+    return newBlock = block.merge({
       type: "image",
       text: "",
       data: {
         url: json.imgSrc,
         forceUpload: true
       }
-    }));
+    });
   });
 
   tempDoc = null;

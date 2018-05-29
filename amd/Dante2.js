@@ -40753,7 +40753,7 @@ var DanteAnchorPopover = function (_React$Component) {
         left: 0
       },
       show: false,
-      url: ""
+      url: ''
     };
     return _this;
   }
@@ -40768,17 +40768,20 @@ var DanteAnchorPopover = function (_React$Component) {
 
   DanteAnchorPopover.prototype.show = function show() {
     return this.setState({
-      show: true });
+      show: true
+    });
   };
 
   DanteAnchorPopover.prototype.hide = function hide() {
     return this.setState({
-      show: false });
+      show: false
+    });
   };
 
   DanteAnchorPopover.prototype.setPosition = function setPosition(coords) {
     return this.setState({
-      position: coords });
+      position: coords
+    });
   };
 
   DanteAnchorPopover.prototype.relocate = function relocate(node) {
@@ -40807,8 +40810,8 @@ var DanteAnchorPopover = function (_React$Component) {
     var parentBoundary = parent.getBoundingClientRect();
 
     return {
-      top: selectionBoundary.top - parentBoundary.top + 160,
-      left: selectionBoundary.left + selectionBoundary.width / 2 - padd
+      top: selectionBoundary.top - parentBoundary.top + 10,
+      left: selectionBoundary.left + selectionBoundary.width / 2 - padd - parentBoundary.left
     };
   };
 
@@ -40827,8 +40830,7 @@ var DanteAnchorPopover = function (_React$Component) {
         className: 'dante-popover popover--tooltip popover--Linktooltip popover--bottom is-active',
         style: style,
         onMouseOver: this.props.handleOnMouseOver,
-        onMouseOut: this.props.handleOnMouseOut
-      },
+        onMouseOut: this.props.handleOnMouseOut },
       _react2['default'].createElement(
         'div',
         { className: 'popover-inner' },
