@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Immutable from 'immutable';
-import {Map, fromJS} from 'immutable';
+import React from "react";
+import ReactDOM from "react-dom";
+import Immutable from "immutable";
+import { Map, fromJS } from "immutable";
 import {
   convertToRaw,
   convertFromRaw,
@@ -14,13 +14,13 @@ import {
   RichUtils,
   DefaultDraftBlockRenderMap,
   SelectionState,
-  Modifier,
-} from 'draft-js';
+  Modifier
+} from "draft-js";
 
 import {
-  convertToHTML,
+  convertToHTML
   //, convertFromHTML
-} from 'draft-convert';
+} from "draft-convert";
 
 import {
   addNewBlock,
@@ -28,15 +28,15 @@ import {
   updateDataOfBlock,
   //updateTextOfBlock,
   getCurrentBlock,
-  addNewBlockAt,
-} from '../../model/index.js';
+  addNewBlockAt
+} from "../../model/index.js";
 
-import Link from '../decorators/link';
-import Debug from './debug';
-import findEntities from '../../utils/find_entities';
-import SaveBehavior from '../../utils/save_content';
-import customHTML2Content from '../../utils/html2content';
-import createStyles from 'draft-js-custom-styles';
+import Link from "../decorators/link";
+import Debug from "./debug";
+import findEntities from "../../utils/find_entities";
+import SaveBehavior from "../../utils/save_content";
+import customHTML2Content from "../../utils/html2content";
+import createStyles from "draft-js-custom-styles";
 
 class DanteEditor extends React.Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class DanteEditor extends React.Component {
     this.relocateTooltips = this.relocateTooltips.bind(this);
     this.tooltipsWithProp = this.tooltipsWithProp.bind(this);
     this.tooltipHasSelectionElement = this.tooltipHasSelectionElement.bind(
-      this,
+      this
     );
     this.handleShowPopLinkOver = this.handleShowPopLinkOver.bind(this);
     this.handleHidePopLinkOver = this.handleHidePopLinkOver.bind(this);
@@ -94,37 +94,37 @@ class DanteEditor extends React.Component {
 
     this.decorator = new CompositeDecorator([
       {
-        strategy: findEntities.bind(null, 'LINK', this),
-        component: Link,
-      },
+        strategy: findEntities.bind(null, "LINK", this),
+        component: Link
+      }
     ]);
 
     this.blockRenderMap = Map({
       image: {
-        element: 'figure',
+        element: "figure"
       },
       video: {
-        element: 'figure',
+        element: "figure"
       },
       embed: {
-        element: 'div',
+        element: "div"
       },
       unstyled: {
         wrapper: null,
-        element: 'div',
+        element: "div"
       },
       paragraph: {
         wrapper: null,
-        element: 'div',
+        element: "div"
       },
       placeholder: {
         wrapper: null,
-        element: 'div',
-      },
+        element: "div"
+      }
     });
 
     this.extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(
-      this.blockRenderMap,
+      this.blockRenderMap
     );
 
     this.state = {
@@ -132,7 +132,7 @@ class DanteEditor extends React.Component {
       read_only: this.props.config.read_only,
       blockRenderMap: this.extendedBlockRenderMap,
       locks: 0,
-      debug: this.props.config.debug,
+      debug: this.props.config.debug
     };
 
     this.widgets = this.props.config.widgets;
@@ -152,16 +152,16 @@ class DanteEditor extends React.Component {
       getLocks: this.getLocks,
       config: {
         xhr: this.props.config.xhr,
-        data_storage: this.props.config.data_storage,
+        data_storage: this.props.config.data_storage
       },
       editorState: this.state.editorState,
-      editorContent: this.emitSerializedOutput(),
+      editorContent: this.emitSerializedOutput()
     });
 
-    const {styles, customStyleFn, exporter} = createStyles([
-      'font-size',
-      'color',
-      'font-family',
+    const { styles, customStyleFn, exporter } = createStyles([
+      "font-size",
+      "color",
+      "font-family"
     ]); //, 'PREFIX', customStyleMap);
     this.styles = styles;
     this.customStyleFn = customStyleFn;
@@ -176,7 +176,7 @@ class DanteEditor extends React.Component {
     if (this.props.content) {
       newEditorState = EditorState.set(
         this.decodeEditorContent(this.props.content),
-        {decorator: this.decorator},
+        { decorator: this.decorator }
       );
     }
     this.onChange(newEditorState);
@@ -187,12 +187,12 @@ class DanteEditor extends React.Component {
     let editorState;
     return (editorState = EditorState.createWithContent(
       new_content,
-      this.decorator,
+      this.decorator
     ));
   }
 
   refreshSelection(newEditorState) {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
     // Setting cursor position after inserting to content
     const s = this.state.editorState.getSelection();
     const c = editorState.getCurrentContent();
@@ -205,7 +205,7 @@ class DanteEditor extends React.Component {
     selectionState = selectionState.merge({
       anchorOffset: focusOffset,
       focusKey: anchorKey,
-      focusOffset,
+      focusOffset
     });
 
     let newState = EditorState.forceSelection(newEditorState, selectionState);
@@ -218,7 +218,7 @@ class DanteEditor extends React.Component {
     const content = editorState.getCurrentContent();
     const newEditorState = EditorState.createWithContent(
       content,
-      this.decorator,
+      this.decorator
     );
 
     return this.refreshSelection(newEditorState);
@@ -226,19 +226,19 @@ class DanteEditor extends React.Component {
 
   onChange(editorState) {
     this.setPreContent();
-    this.setState({editorState});
+    this.setState({ editorState });
 
     const currentBlock = getCurrentBlock(this.state.editorState);
     const blockType = currentBlock.getType();
 
     if (!editorState.getSelection().isCollapsed()) {
-      const tooltip = this.tooltipsWithProp('displayOnSelection')[0];
+      const tooltip = this.tooltipsWithProp("displayOnSelection")[0];
       if (!this.tooltipHasSelectionElement(tooltip, blockType)) {
         return;
       }
-      this.handleTooltipDisplayOn('displayOnSelection');
+      this.handleTooltipDisplayOn("displayOnSelection");
     } else {
-      this.handleTooltipDisplayOn('displayOnSelection', false);
+      this.handleTooltipDisplayOn("displayOnSelection", false);
     }
 
     setTimeout(() => {
@@ -283,7 +283,7 @@ class DanteEditor extends React.Component {
       .map(o => {
         return o.getText();
       })
-      .join('\n');
+      .join("\n");
 
     return out;
   }
@@ -293,14 +293,14 @@ class DanteEditor extends React.Component {
 
     return (html = convertToHTML({
       entityToHTML: (entity, originalText) => {
-        if (entity.type === 'LINK') {
+        if (entity.type === "LINK") {
           return `<a target='_blank' href=\"${
             entity.data.url
           }\">${originalText}</a>`;
         } else {
           return originalText;
         }
-      },
+      }
     })(this.state.editorState.getCurrentContent()));
   }
 
@@ -310,13 +310,13 @@ class DanteEditor extends React.Component {
 
   addLock() {
     return this.setState({
-      locks: (this.state.locks += 1),
+      locks: (this.state.locks += 1)
     });
   }
 
   removeLock() {
     return this.setState({
-      locks: (this.state.locks -= 1),
+      locks: (this.state.locks -= 1)
     });
   }
 
@@ -334,7 +334,7 @@ class DanteEditor extends React.Component {
 
   blockRenderer(block) {
     switch (block.getType()) {
-      case 'atomic':
+      case "atomic":
         const entity = block.getEntityAt(0);
         const entity_type = Entity.get(entity).getType();
 
@@ -369,8 +369,8 @@ class DanteEditor extends React.Component {
         enableEditable: this.enableEditable,
         removeLock: this.removeLock,
         getLocks: this.getLocks,
-        config: dataBlock.options,
-      },
+        config: dataBlock.options
+      }
     };
 
     return null;
@@ -379,7 +379,7 @@ class DanteEditor extends React.Component {
   blockStyleFn(block) {
     const currentBlock = getCurrentBlock(this.state.editorState);
     const is_selected =
-      currentBlock.getKey() === block.getKey() ? 'is-selected' : '';
+      currentBlock.getKey() === block.getKey() ? "is-selected" : "";
 
     if (this.renderableBlocks().includes(block.getType())) {
       return this.styleForBlock(block, currentBlock, is_selected);
@@ -409,7 +409,7 @@ class DanteEditor extends React.Component {
     const selectedFn = dataBlock.selectedFn
       ? dataBlock.selectedFn(block)
       : null;
-    const selected_class = is_selected ? dataBlock.selected_class : '';
+    const selected_class = is_selected ? dataBlock.selected_class : "";
 
     return `${dataBlock.wrapper_class} ${selected_class} ${selectedFn}`;
   }
@@ -427,7 +427,7 @@ class DanteEditor extends React.Component {
 
     return setTimeout(() => {
       const items = this.tooltipsWithProp(prop);
-      console.log(items);
+      //console.log(items);
       return items.map(o => {
         this.refs[o.ref].display(display);
         return this.refs[o.ref].relocate();
@@ -457,24 +457,24 @@ class DanteEditor extends React.Component {
   handleTXTPaste(text, html) {
     const currentBlock = getCurrentBlock(this.state.editorState);
 
-    let {editorState} = this.state;
+    let { editorState } = this.state;
 
     switch (currentBlock.getType()) {
-      case 'image':
-      case 'video':
-      case 'placeholder':
+      case "image":
+      case "video":
+      case "placeholder":
         const newContent = Modifier.replaceText(
           editorState.getCurrentContent(),
           new SelectionState({
             anchorKey: currentBlock.getKey(),
             anchorOffset: 0,
             focusKey: currentBlock.getKey(),
-            focusOffset: 2,
+            focusOffset: 2
           }),
-          text,
+          text
         );
 
-        editorState = EditorState.push(editorState, newContent, 'replace-text');
+        editorState = EditorState.push(editorState, newContent, "replace-text");
 
         this.onChange(editorState);
 
@@ -489,16 +489,16 @@ class DanteEditor extends React.Component {
 
     // TODO: make this configurable
     switch (currentBlock.getType()) {
-      case 'image':
-      case 'video':
-      case 'placeholder':
+      case "image":
+      case "video":
+      case "placeholder":
         return this.handleTXTPaste(text, html);
         break;
     }
 
     const newContentState = customHTML2Content(
       html,
-      this.extendedBlockRenderMap,
+      this.extendedBlockRenderMap
     );
 
     const selection = this.state.editorState.getSelection();
@@ -527,14 +527,14 @@ class DanteEditor extends React.Component {
         anchorOffset: 0,
         focusKey: newBlockKey,
         focusOffset: 0,
-        isBackward: false,
-      }),
+        isBackward: false
+      })
     });
 
     const pushedContentState = EditorState.push(
       this.state.editorState,
       newContent,
-      'insert-fragment',
+      "insert-fragment"
     );
 
     this.onChange(pushedContentState);
@@ -547,10 +547,10 @@ class DanteEditor extends React.Component {
     return files.map(file => {
       let opts = {
         url: URL.createObjectURL(file),
-        file,
+        file
       };
 
-      return this.onChange(addNewBlock(this.state.editorState, 'image', opts));
+      return this.onChange(addNewBlock(this.state.editorState, "image", opts));
     });
   }
 
@@ -558,10 +558,10 @@ class DanteEditor extends React.Component {
     return files.map(file => {
       let opts = {
         url: URL.createObjectURL(file),
-        file,
+        file
       };
 
-      return this.onChange(addNewBlock(this.state.editorState, 'image', opts));
+      return this.onChange(addNewBlock(this.state.editorState, "image", opts));
     });
   }
 
@@ -584,10 +584,10 @@ class DanteEditor extends React.Component {
       }
     }
 
-    let {editorState} = this.state;
+    let { editorState } = this.state;
 
     if (e.shiftKey) {
-      this.setState({editorState: RichUtils.insertSoftNewline(editorState)});
+      this.setState({ editorState: RichUtils.insertSoftNewline(editorState) });
       return true;
     }
 
@@ -607,8 +607,8 @@ class DanteEditor extends React.Component {
 
         //TODO turn this in configurable
         switch (blockType) {
-          case 'header-one':
-            this.onChange(resetBlockWithType(editorState, 'unstyled'));
+          case "header-one":
+            this.onChange(resetBlockWithType(editorState, "unstyled"));
             return true;
             break;
           default:
@@ -656,7 +656,7 @@ class DanteEditor extends React.Component {
     const blockType = currentBlock.getType();
     const selection = this.state.editorState.getSelection();
 
-    let {editorState} = this.state;
+    let { editorState } = this.state;
 
     // close popovers
     if (currentBlock.getText().length !== 0) {
@@ -673,26 +673,26 @@ class DanteEditor extends React.Component {
 
     // will insert blank space when link found
     if (
-      chars === ' ' &&
-      endEntityType === 'LINK' &&
-      afterEndEntityType !== 'LINK'
+      chars === " " &&
+      endEntityType === "LINK" &&
+      afterEndEntityType !== "LINK"
     ) {
       const newContentState = Modifier.insertText(
         editorState.getCurrentContent(),
         selection,
-        ' ',
+        " "
       );
       const newEditorState = EditorState.push(
         editorState,
         newContentState,
-        'insert-characters',
+        "insert-characters"
       );
       this.onChange(newEditorState);
       return true;
     }
 
     // block transform
-    if (blockType.indexOf('atomic') === 0) {
+    if (blockType.indexOf("atomic") === 0) {
       return false;
     }
 
@@ -705,7 +705,7 @@ class DanteEditor extends React.Component {
       currentBlock.getText() + chars
     ];
 
-    console.log(`BLOCK TO SHOW: ${blockTo}`);
+    //console.log(`BLOCK TO SHOW: ${blockTo}`);
 
     if (!blockTo) {
       return false;
@@ -718,29 +718,29 @@ class DanteEditor extends React.Component {
 
   // TODO: make this configurable
   handleKeyCommand(command) {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
     let currentBlockType, newBlockType;
 
     if (this.props.handleKeyCommand && this.props.handleKeyCommand(command)) {
       return true;
     }
 
-    if (command === 'add-new-block') {
-      this.onChange(addNewBlock(editorState, 'blockquote'));
+    if (command === "add-new-block") {
+      this.onChange(addNewBlock(editorState, "blockquote"));
       return true;
     }
 
     const block = getCurrentBlock(editorState);
 
-    if (command.indexOf('toggle_inline:') === 0) {
-      newBlockType = command.split(':')[1];
+    if (command.indexOf("toggle_inline:") === 0) {
+      newBlockType = command.split(":")[1];
       currentBlockType = block.getType();
       this.onChange(RichUtils.toggleInlineStyle(editorState, newBlockType));
       return true;
     }
 
-    if (command.indexOf('toggle_block:') === 0) {
-      newBlockType = command.split(':')[1];
+    if (command.indexOf("toggle_block:") === 0) {
+      newBlockType = command.split(":")[1];
       currentBlockType = block.getType();
 
       this.onChange(RichUtils.toggleBlockType(editorState, newBlockType));
@@ -749,7 +749,7 @@ class DanteEditor extends React.Component {
 
     const newState = RichUtils.handleKeyCommand(
       this.state.editorState,
-      command,
+      command
     );
     if (newState) {
       this.onChange(newState);
@@ -775,7 +775,7 @@ class DanteEditor extends React.Component {
     let cmd;
     if (e.altKey) {
       if (e.shiftKey) {
-        cmd = this.findCommandKey('alt-shift', e.which);
+        cmd = this.findCommandKey("alt-shift", e.which);
         if (cmd) {
           return cmd.cmd;
         }
@@ -784,14 +784,14 @@ class DanteEditor extends React.Component {
       }
 
       if (e.ctrlKey || e.metaKey) {
-        cmd = this.findCommandKey('alt-cmd', e.which);
+        cmd = this.findCommandKey("alt-cmd", e.which);
         if (cmd) {
           return cmd.cmd;
         }
         return getDefaultKeyBinding(e);
       }
     } else if (e.ctrlKey || e.metaKey) {
-      cmd = this.findCommandKey('cmd', e.which);
+      cmd = this.findCommandKey("cmd", e.which);
       if (cmd) {
         return cmd.cmd;
       }
@@ -815,28 +815,28 @@ class DanteEditor extends React.Component {
     const selectionState = this.state.editorState.getSelection();
     const block = contentState.getBlockForKey(selectionState.anchorKey);
 
-    return this.updateBlockData(block, {direction: direction_type});
+    return this.updateBlockData(block, { direction: direction_type });
   }
 
   //# read only utils
   toggleEditable() {
     this.closePopOvers();
     return this.setState(
-      {read_only: !this.state.read_only},
-      this.testEmitAndDecode,
+      { read_only: !this.state.read_only },
+      this.testEmitAndDecode
     );
   }
 
   disableEditable() {
-    console.log('in !!');
+    //console.log('in !!');
     this.closePopOvers();
-    return this.setState({read_only: true}, this.testEmitAndDecode);
+    return this.setState({ read_only: true }, this.testEmitAndDecode);
   }
 
   enableEditable() {
     this.closePopOvers();
-    console.log('out !!');
-    return this.setState({read_only: false}, this.testEmitAndDecode);
+    //console.log('out !!');
+    return this.setState({ read_only: false }, this.testEmitAndDecode);
   }
 
   closePopOvers() {
@@ -884,7 +884,7 @@ class DanteEditor extends React.Component {
     // set url first in order to calculate popover width
     let coords;
     this.refs.anchor_popover.setState({
-      url: el ? el.href : this.refs.anchor_popover.state.url,
+      url: el ? el.href : this.refs.anchor_popover.state.url
     });
 
     if (el) {
@@ -895,7 +895,7 @@ class DanteEditor extends React.Component {
       this.refs.anchor_popover.setPosition(coords);
     }
 
-    this.refs.anchor_popover.setState({show: true});
+    this.refs.anchor_popover.setState({ show: true });
 
     this.isHover = true;
     return this.cancelHide();
@@ -929,7 +929,8 @@ class DanteEditor extends React.Component {
                     <div
                       ref="richEditor"
                       className="section-inner layoutSingleColumn"
-                      onClick={this.focus}>
+                      onClick={this.focus}
+                    >
                       <Editor
                         blockRendererFn={this.blockRenderer}
                         editorState={this.state.editorState}
